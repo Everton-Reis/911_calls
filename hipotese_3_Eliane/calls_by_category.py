@@ -1,6 +1,6 @@
 import pandas as pd
 
-filepath = "C:/Users/eliane/OneDrive/Documentos/A1LP/Projeto/Projeto/911_Calls_for_Service.csv"
+filepath = "911_Calls_for_Service.csv"
 
 # Load data from CSV file
 def load_data(filepath):
