@@ -16,20 +16,23 @@ def categorize_activity(description):
 
     # Categories
     against_person = ['HIT AND RUN', 'COMMON ASSAULT', 'FAMILY DISTURB', 'MISSING PERSON', 
-                      'SUSPICIOUS PERS', 'LEWD ACT', 'DEATH REPORT', 'INTOXICATED PERS', 
-                      'ASSISTANCE']
-    
-    against_public_property = ['DESTRUCT PROP', 'LOUD MUSIC', 'FALSE PRETENSE', 'AUTO ACCIDENT', 
-                               'BURGLARY', 'LARCENY', 
-                               'RECOVER PROPERTY', 'RECOVERED VEH', 'SQUEEGEE DIST', 'ILLEGAL DUMPING',
-                               'AUDIBLE ALARM']
+                  'ARMED PERSON', 'ROBBERY ARMED', 'AUTO ACCIDENT', 'BURGLARY', 'LARCENY',
+                  'BEHAVIOR CRISIS', 'SICK CASE', 'AUTO ACC/INJURY']
 
-    against_public_welfare = ['NARCOTICS', 'DISORDERLY', 'LOUD MUSIC', 'PROSTITUTION']
+    against_public_property = ['DESTRUCT PROP', 'FALSE PRETENSE', 
+                            'AUTO THEFT', 'VEHICLE DISTURB', 'LARCENY F/AUTO']
+
+    against_public_welfare = ['NARCOTICS', 'DISORDERLY', 'LOUD MUSIC', 'HOLDUP ALARM', 'SHOOTING',
+                            'AGGRAV ASSAULT', 'OVERDOSE', 'DISCHRG FIREARM', 'SUSPICIOUS PERS',
+                            'LYING IN STREET', 'STREET OBSTRUCT', 'SILENT ALARM', 'JUV DISTURBANCE']
 
     against_unknown = ['INVESTIGATE', 'OTHER', 'WANTED ON WARR', 'INVESTIGATE AUTO', 
-                       'SUPV COMPLAINT', 'NOTIFY', 'FOLLOW UP']
+                    'SUPV COMPLAINT', 'FOLLOW UP', '911/NO VOICE', 
+                    'CHECK WELL BEING', 'CHECK WELLBEING', 'SEE TEXT', 'POLICE NOTIFY ON']
     
-    others = ['REPO', 'PRIVATE TOW', 'LOST PROPERTY', 'ESCORT', 'TOWED VEHICLE', 'PANHANDLER']
+    uncategorized_high_frequency_descriptions = ['REPO', 'PRIVATE TOW', 'DIRECTED PATROL', 
+                                                 'Business Check', 'INVEST','PICKUP ORDERS',
+                                                 'AUDIBLE ALARM', 'PRKG COMPLAINT', 'EXPART/PROT/PEAC']
 
     # Checking the description category
     if any(keyword in description for keyword in against_person):
@@ -40,10 +43,10 @@ def categorize_activity(description):
         return 'Against Public Welfare'
     elif any(keyword in description for keyword in against_unknown):
         return 'Against Unknown'
-    elif any(keyword in description for keyword in others):
-        return 'Others'
+    elif any(keyword in description for keyword in uncategorized_high_frequency_descriptions):
+        return 'Uncategorized High Frequency Descriptions'
     else:
-        return None
+        return 'Low Frequency Descriptions'
 
 # Count the Calls
 def call_counter(df):
@@ -70,5 +73,5 @@ def process_and_save_data(filepath, output_filepath):
     save_data(df_category_percentage, output_filepath)
 
 if __name__ == "__main__":
-    output_filepath = 'call_distribution_percentage.csv'  # Output file path for processed data
+    output_filepath = 'call_distribution_percentage.csv'
     process_and_save_data(filepath, output_filepath)
