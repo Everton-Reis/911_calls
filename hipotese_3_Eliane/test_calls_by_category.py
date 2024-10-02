@@ -48,5 +48,104 @@ class TestDataProcessing(unittest.TestCase):
             category = categorize_activity(description)
             self.assertEqual(category, expected_category)
 
+    def setUp(self):
+        """
+        This method creates a sample DataFrame with columns 'district' and 'description'.
+
+        DataFrame structure:
+        
+        ==========  ================================================
+        district    description
+        ==========  ================================================
+        D1          HIT AND RUN           # Against Person
+        D1          COMMON ASSAULT        # Against Person
+        D2          NARCOTICS             # Against Public Welfare
+        D2          LOUD MUSIC            # Against Public Welfare
+        D1          AUTO THEFT            # Against Public Property
+        ==========  ================================================
+
+        The test data will be used for testing the call_counter and distribution_in_percentage functions.
+        """
+
+        self.data = pd.DataFrame({
+            'district': ['D1', 'D1', 'D2', 'D2', 'D1'],
+            'description': [
+                'HIT AND RUN',        # Against Person
+                'COMMON ASSAULT',     # Against Person
+                'NARCOTICS',          # Against Public Welfare
+                'LOUD MUSIC',         # Against Public Welfare
+                'AUTO THEFT'          # Against Public Property
+            ]
+        })
+
+    def test_call_counter(self):
+        """
+        Test the call_counter function to count the number of calls per category in each district.
+
+        This test checks the following:
+        1. Counts the number of calls for each category in the provided test data.
+        2. That the counts are as expected:
+        
+                        | district | category                | call_count |
+                        |----------|-------------------------|------------|
+                        | D1       | Against Person          | 2          |
+                        | D1       | Against Public Property | 1          |
+                        | D2       | Against Public Welfare  | 2          |
+
+        It also verifies that the function handles empty DataFrames.
+        """
+
+        result = call_counter(self.data)
+        self.assertTrue((result['call_count'] == [2, 1, 2]).all())
+        empty_df = pd.DataFrame(columns=['district', 'description'])
+        result = call_counter(empty_df)
+        self.assertTrue(result.empty)
+
+    def test_distribution_in_percentage(self):
+        """
+        Test the distribution_in_percentage function to ensure percentages sum to 100% per district.
+
+        This test checks the percentage distribution of calls for each category within districts based on the call counts.
+
+        Expected Percentages:
+            {
+                'D1': {
+                    'Against Person': 66.67,
+                    'Against Public Property': 33.33,
+                },
+                'D2': {
+                    'Against Public Welfare': 100.0,
+                }
+            }
+        """
+
+        result = call_counter(self.data)
+        percentage_result = distribution_in_percentage(result)
+
+        # Checks whether the sum of the percentages is 100%
+        grouped = percentage_result.groupby('district')['percentage'].sum().reset_index()
+        for i, row in grouped.iterrows():
+            self.assertAlmostEqual(row['percentage'], 100.0, places=1)
+
+        expected_percentages = {
+            'D1': {
+                'Against Person': 66.66666666666666,
+                'Against Public Property': 33.33333333333333,
+            },
+            'D2': {
+                'Against Public Welfare': 100.0,
+            }
+        }
+
+        for j, row in percentage_result.iterrows():
+            district = row['district']
+            category = row['category']
+            expected = expected_percentages[district][category]
+            self.assertAlmostEqual(row['percentage'], expected, places=1)
+
+        empty_df = pd.DataFrame(columns=['district', 'category', 'call_count'])
+        result = distribution_in_percentage(empty_df)
+        self.assertTrue(result.empty)
+
 if __name__ == '__main__':
     unittest.main()
