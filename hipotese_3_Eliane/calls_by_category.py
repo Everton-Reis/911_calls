@@ -55,8 +55,8 @@ def call_counter(df):
 
 # Calculate distribution in percentage
 def distribution_in_percentage(df):
-    total_calls = df['call_count'].sum()
-    df['percentage'] = (df['call_count'] / total_calls) * 100
+    df['total_calls'] = df.groupby('district')['call_count'].transform('sum')
+    df['percentage'] = (df['call_count'] / df['total_calls']) * 100
     return df
 
 # Save the processed data to a CSV file
