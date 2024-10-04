@@ -1,6 +1,7 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 
+filepath = "911_Calls_for_Service.csv"
 #lendo o arquivo
 filepath = "dados_modificados.csv"
 sub_df = pd.read_csv(filepath)
@@ -15,9 +16,6 @@ def get_hour(entrada,arquivo):
 
 #aplicando a função get_hour
 sub_df = get_hour("callDateTime",sub_df)
-
-#limpando as linhas
-sub_df= sub_df.dropna()
 
 #agrupando pelo horario
 sub_groupby = sub_df.groupby(['hour']).size()
