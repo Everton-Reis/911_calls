@@ -1,8 +1,5 @@
 import pandas as pd
 
-filepath = "911_Calls_for_Service.csv"
-
-
 def load_data(filepath):
     """
     Load data from a CSV file, selecting specific columns and dropping rows with missing values.
@@ -148,7 +145,3 @@ def process_and_save_data(filepath, output_filepath):
     df_category_count = call_counter(df)
     df_category_percentage = distribution_in_percentage(df_category_count)
     save_data(df_category_percentage, output_filepath)
-
-if __name__ == "__main__":
-    output_filepath = 'Call_Distribution_Percentage.csv'
-    process_and_save_data(filepath, output_filepath)
