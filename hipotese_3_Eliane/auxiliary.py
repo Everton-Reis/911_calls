@@ -1,6 +1,7 @@
 import pandas as pd
 
 filepath = "911_Calls_for_Service.csv"
+filepath2 = "Call_Distribution_Percentage.csv"
 
 def load_data(filepath):
     """
@@ -52,6 +53,57 @@ def save_top_descriptions(df, output_csv='Top_50_Descriptions.csv'):
 
     return top_descriptions_df
 
-df = load_data(filepath)
-if not df.empty: 
-    save_top_descriptions(df)
+def remove_lines(filepath2):
+    """
+    Removes lines from CSV file where 'district' column contains unwanted words 
+    and saves the cleaned data to a new CSV file to be used to generate the call
+    distribution map by district in Baltimore.
+
+    Parameters
+    ----------
+    file path2: str
+        The path to the CSV file that contains the data to be cleaned.
+
+    Returns
+    -------
+    pandas.DataFrame
+        A DataFrame with the rows containing unwanted words in the 'district' column removed.
+    
+    Notes
+    -----
+    The function removes rows where the 'district' column contains any of the following words: 
+    'EVT1', 'TRU', 'SS', 'CW'. These words refer to special units or designations not linked to
+    geographic districts, and are therefore excluded for the purposes of analyzing calls by standard districts.
+    The cleaned data is saved in a new file called 'Cleaned_Call_Distribution.csv'.
+    """
+   
+    df = pd.read_csv(filepath2)
+
+    words_to_remove = ['EVT1', 'TRU', 'SS', 'CW'] 
+
+    # If the line has either 'EVT1' or 'TRU' or 'SS' or 'CW', it is removed
+    pattern = '|'.join(words_to_remove)
+    df_cleaned = df[~df['district'].str.contains(pattern, case=False, na=False)]
+    df_cleaned.to_csv('Cleaned_Call_Distribution.csv', index=False)
+
+    return df_cleaned
+
+def main():
+    # Clean data in filepath2
+    print("Removing unwanted rows from the file...")
+    df_cleaned = remove_lines(filepath2)
+    print("Rows removed. Cleaned data saved to 'Cleaned_Call_Distribution.csv'.")
+
+    # Load and process the main data
+    print("Loading data from the main file...")
+    df = load_data(filepath)
+    
+    if not df.empty:
+        print("Data loaded successfully. Extracting top 50 descriptions...")
+        top_descriptions_df = save_top_descriptions(df)
+        print("Top 50 descriptions saved to 'Top_50_Descriptions.csv'.")
+    else:
+        print("Failed to load data or data is empty.")
+
+if __name__ == "__main__":
+    main()
