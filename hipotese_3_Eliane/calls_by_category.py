@@ -2,16 +2,49 @@ import pandas as pd
 
 filepath = "911_Calls_for_Service.csv"
 
-# Load data from CSV file
-def load_data(filepath):
-    columns_to_use = ['recordId', 'district', 'description']
-    df = pd.read_csv(filepath, usecols=columns_to_use, sep="\t")
-    return df[['recordId', 'district', 'description']].dropna()
 
-# Categorization of illegal activities to better visualize the distribution of calls
-def categorize_activity(description):
+def load_data(filepath):
+    """
+    Load data from a CSV file, selecting specific columns and dropping rows with missing values.
+
+    Parameters
+    ----------
+    filepath : str
+        The path to the CSV file containing the data.
+
+    Returns
+    -------
+    pandas.DataFrame
+        A DataFrame containing the 'recordId', 'district', and 'description' columns, with missing values removed.
+    """
     
-    # Converting to uppercase to ensure all comparisons are consistent
+    columns_to_use = ['recordId', 'district', 'description']
+    try:
+        df = pd.read_csv(filepath, usecols=columns_to_use, sep="\t") 
+        return df[['recordId', 'district', 'description']].dropna()
+    except FileNotFoundError:
+        print(f"Error: The file {filepath} was not found.")
+        return pd.DataFrame() 
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return pd.DataFrame() 
+
+def categorize_activity(description):
+    """"
+    This function do the categorization of illegal activities to better visualize the distribution of calls.
+
+    Before the categorization the descritions are converting to uppercase to ensure all comparisons are consistent.
+
+    Parameters
+    ----------
+    descriptions: str
+        A column that has the types of illegal activities.
+
+    Returns
+    -------
+        Illegal activities categorized.   
+    """
+    
     description = description.upper()
 
     # Categories
@@ -48,30 +81,74 @@ def categorize_activity(description):
     else:
         return 'Low Frequency Descriptions'
 
-# Count the Calls
 def call_counter(df):
+    """ 
+    This function counts calls from each category grouped by district to better analyze the distribution.
+
+    Parameterr
+    ----------
+    df: DataFrame
+        The DataFrame countains the recordId', 'district', and 'description' columns.
+
+    Returns
+    -------
+    pandas.DataFrame
+        A DataFrame with the values oh each category by district.
+    """
+
     df['category'] = df['description'].apply(categorize_activity)
     return df.groupby(['district', 'category']).size().reset_index(name='call_count')
 
-# Calculate distribution in percentage
 def distribution_in_percentage(df):
+    """
+    This function calculates the distribution in percentage of each category by district.
+
+    Parameters
+    ----------
+    df: DataFrame
+        The DataFrame countains the recordId', 'district', and 'description' columns.
+
+    Returns
+    -------
+    df: pandas.DataFrame
+        A DataFrame with the percentage of each category by district. 
+    """
+
     df['total_calls'] = df.groupby('district')['call_count'].transform('sum')
     df['percentage'] = (df['call_count'] / df['total_calls']) * 100
+    
     return df
 
-# Save the processed data to a CSV file
 def save_data(df, output_filepath):
+    """
+    This function save the processed data to a CSV file.
+
+    Parameters
+    ----------
+    df: DataFrame
+        The DataFrame countains the recordId', 'district', and 'description' columns.
+    output_filepath: 'Call_Distribution_Percentage.csv'
+        Used after the process of the following function 'process_and_save_data' called in the start. 
+    """
+
     df.to_csv(output_filepath, index=False)
 
-# Main function to process data and save it for visualization
 def process_and_save_data(filepath, output_filepath):
+    """
+    Main function to process data and save it for visualization. Calls the functions.
+
+    Parameters
+    ----------
+    filepath : str
+        The path to the CSV file containing the data.
+    output_filepath: 'Call_Distribution_Percentage.csv'    
+    """
+
     df = load_data(filepath)
     df_category_count = call_counter(df)
     df_category_percentage = distribution_in_percentage(df_category_count)
-    
-    # Save the data to CSV for visualization
     save_data(df_category_percentage, output_filepath)
 
 if __name__ == "__main__":
-    output_filepath = 'call_distribution_percentage.csv'
+    output_filepath = 'Call_Distribution_Percentage.csv'
     process_and_save_data(filepath, output_filepath)

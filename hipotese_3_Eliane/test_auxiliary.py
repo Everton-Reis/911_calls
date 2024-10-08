@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 from unittest.mock import patch, mock_open
-from auxiliary import load_data, save_top_descriptions
+from auxiliary import load_data, save_top_descriptions, remove_lines
 
 class TestDataProcessing(unittest.TestCase):
     """
@@ -64,6 +64,40 @@ class TestDataProcessing(unittest.TestCase):
         for description, count in expected_counts.items():
             actual_count = result_df.loc[result_df['Description'] == description, 'Count'].values[0]
             self.assertEqual(actual_count, count)
+
+    @patch("pandas.read_csv")
+    @patch("pandas.DataFrame.to_csv")
+    def test_remove_lines(self, mock_to_csv, mock_read_csv):
+        """
+        Test the remove_lines function to ensure rows containing unwanted words 
+        in the 'district' column are removed and the cleaned data is saved to a new file.
+        """
+        # Mock DataFrame for testing
+        mock_df = pd.DataFrame({
+            'district': ['EVT1', 'TRU', 'NE', 'SS', 'CW', 'ND'],
+            'call_count': [100, 150, 200, 250, 300, 350]
+        })
+
+        # Returns the simulated DataFrame
+        mock_read_csv.return_value = mock_df
+
+        # Call the funct remove_lines
+        result_df = remove_lines("dummy_path.csv")
+
+        # Reset the index of the resulting DataFrame
+        result_df = result_df.reset_index(drop=True)
+
+        # Expected data after removing lines with 'EVT1', 'TRU', 'SS', 'CW'
+        expected_df = pd.DataFrame({
+            'district': ['NE', 'ND'],
+            'call_count': [200, 350]
+        })
+
+        # Checks if the DataFrame returned by remove_lines is the same as expected
+        pd.testing.assert_frame_equal(result_df, expected_df)
+
+        # Checks if the to_csv method was called once with the correct file name
+        mock_to_csv.assert_called_once_with('Cleaned_Call_Distribution.csv', index=False)
 
 if __name__ == '__main__':
     unittest.main()
