@@ -1,55 +1,92 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 
-def plot_graf_pie_by_hour(df: pd.Series, hour: str, file_name: str):
+def plot_graf_pie_by_hour(df: pd.Series, hour: str, file_name: str, column: str):
     """
-    Read the data file indicated by file_path.
-    The file must be in csv format.
+    Plot a pie graphic based on the values in the `column` for a specific `hour`.
 
     Parameters
     ----------
-    file_path: str
-        The path to the file containing the data files.
+    df: pd.DataFrame
+        DataFrame containing the data for plotting.
+    hour: str
+        Hour of the day to analyze and filter the data.
+    file_name: str
+        Name of the file where the plot will be saved.
+    column: str
+        Column by which the pie graphic will be grouped and plotted.
+        Must be 'description' or 'priority'
 
     Returns
     -------
-    pandas.DataFrame
-        A DataFrame containing the 'callDateTime', 'priority' and 'description' columns.
+    None
+        The pie graphic is saved as an image file.
 
     Raises
     ------
-    FileNotFoundError
-        If the file does not exist
+    KeyError
+        If the specified `column` or 'hour' does not exist in the DataFrame.
     """
-    graf_df = df[df['hour'] == hour]
-    graf_df_groupby = graf_df.groupby(['description']).size()
+    try:
+        graf_df = df[df['hour'] == hour]
+        graf_df_groupby = graf_df.groupby([column]).size()
+    except KeyError:
+        print(f"Error in plot_graf_pie_by_hour function: {column} or 'hour' column not found in file.")
+        exit()
+
     graf_df_groupby = graf_df_groupby.sort_values(ascending=[False])
     
     graf_df_groupby.plot.pie(
-        y='description', 
-        autopct='%1.1f%%',  # Mostrar percentuais
+        y=column,
+        autopct='%1.1f%%',  #Show percentages
         colors=['#3A3661', '#423b6a', '#6b6295', '#9589bf','#beb0ea'],
-        explode=[0.1] + [0] * (len(graf_df_groupby) - 1),  # Destacando a primeira fatia
+        explode=[0.1] + [0] * (len(graf_df_groupby) - 1),  #Highlighting the first slice
     )
 
-    plt.title(f"Principais ocorencias às {hour} horas")
-    plt.savefig(file_name, dpi=300)
+    if column == 'description':
+        plt.title(f"Main occurrences at {hour}:00", fontsize=14, pad=20)
+    elif column == 'priority':
+        plt.title(f"Percentage of severity of occurrences at {hour}:00", fontsize=14, pad=20)
 
-def plot_graf_bar(df: pd.Series, x: str,y: str):
-   # df.plot.bar(x=x, y=y)
-   
+    plt.tight_layout()
+    plt.savefig(file_name, dpi=300, format='png')
+    plt.close()
+
+def plot_graf_bar(df: pd.Series, x: str,y: str, file_name: str):
+    """
+    Plot a bar graphic representing the data in the specified columns.
+
+    Parameters
+    ----------
+    df: pd.DataFrame
+        DataFrame containing the data for plotting.
+    x: str
+        Column to be used for the x-axis.
+    y: str
+        Column to be used for the y-axis.
+    file_name: str
+        Name of the file where the plot will be saved.
+
+    Returns
+    -------
+    None
+        The bar graphic is saved as an image file.
+    """
     colors = ['#3A3661', '#423b6a', '#6b6295', '#9589bf', '#beb0ea']
     ax = df.plot.bar(x=x, y=y, color=colors, width=0.8, figsize=(15, 6))
-    plt.title('Número de ligações por hora', fontsize=18, weight='bold')
-    plt.xlabel('horarios', fontsize=12)
-    plt.ylabel('ligações', fontsize=12)
+    plt.title('Number of calls per hour', fontsize=18, weight='bold')
+    plt.xlabel('hour', fontsize=12)
+    plt.ylabel('calls', fontsize=12)
+
 
     # Girando os rótulos do eixo X, se necessário
     plt.xticks(rotation=45, ha='right', fontsize=10)  # Rotaciona os rótulos no eixo X
     plt.yticks(fontsize=10)  # Tamanho da fonte no eixo Y
-    
+
     # Adicionando rótulos de valor nas barras
     for columns in ax.containers:
         ax.bar_label(columns, label_type='edge', fontsize=10, color='black')
 
-    plt.savefig('test_image_2.png', dpi=300)
+    plt.tight_layout()
+    plt.savefig(file_name, dpi=300, format='png')
+    plt.close()

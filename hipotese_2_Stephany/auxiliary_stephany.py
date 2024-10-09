@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-from matplotlib import pyplot as plt
 
 def load_datafile(file_path: str) -> pd.DataFrame:
     """
@@ -39,14 +38,14 @@ def load_datafile(file_path: str) -> pd.DataFrame:
     return df[columns]
 
 
-def get_hour(df: pd.Series) -> pd.DataFrame:
+def get_hour(df: pd.DataFrame) -> pd.DataFrame:
     """
     Create a new Dataframe column called `hour`, which contains the hour information extracted from the `callDateTime` column. 
     The entries in 'callDataTime' must be in the format: 'date hour:minutes:seconds'.
 
     Parameters
     ----------
-    df: pd.Series
+    df: pd.DataFrame
         The DataFrame containing the column 'callDataTime'.
 
     Returns
@@ -70,7 +69,7 @@ def get_hour(df: pd.Series) -> pd.DataFrame:
     df['hour']=horas
     return df
 
-def groupby_by(df: pd.Series, column: str):
+def groupby_by(df: pd.DataFrame, column: str):
     """
     Use groupby to group the entries by `column`.
 
@@ -100,7 +99,7 @@ def groupby_by(df: pd.Series, column: str):
         exit()
     return sub_groupby
 
-def get_first_15_most_frequency(df: pd.Series, df_groupy) -> pd.DataFrame:
+def get_first_15_most_frequency(df: pd.DataFrame, df_groupy) -> pd.DataFrame:
     """
     Get the rows that contain the first 15 most common description occurrences.
 
