@@ -59,45 +59,15 @@ def get_hour(df: pd.DataFrame) -> pd.DataFrame:
         If the 'callDateTime' column does not exist or is in an unexpected format.
     """
 
-    horas=[]
+    hour=[]
     try:
         for key in df["callDateTime"]:
-            horas.append((key.split(" ")[1]).split(":")[0])
+            hour.append((key.split(" ")[1]).split(":")[0])
     except KeyError:
         print("Error in get_hour function: 'callDataTime' column not found in file.")
         exit()
-    df['hour']=horas
+    df['hour']=hour
     return df
-
-def groupby_by(df: pd.DataFrame, column: str):
-    """
-    Use groupby to group the entries by `column`.
-
-    Parameters
-    ----------
-    df: pd.DataFrame
-        The DataFrame containing the column `column`.
-
-    column: str
-        The name of the column by which to group the DataFrame.
-    
-    Returns
-    -------
-    pd.core.series.Series
-        A core.series.Series containing the counts of entries grouped by the specified column.
-
-    Raises
-    ------
-    KeyError
-        If the specified column does not exist in the DataFrame.
-    """
-
-    try:
-        sub_groupby = df.groupby([column]).size()   
-    except KeyError:
-        print(f"Error in groupby_by function: {column} column not found in file.")
-        exit()
-    return sub_groupby
 
 def get_first_15_most_frequency(df: pd.DataFrame, df_groupy) -> pd.DataFrame:
     """
