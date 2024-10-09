@@ -39,7 +39,7 @@ def plot_graf_pie_by_hour(df: pd.Series, hour: str, file_name: str, column: str)
     graf_df_groupby.plot.pie(
         y=column,
         autopct='%1.1f%%',  #Show percentages
-        colors=['#3A3661', '#423b6a', '#6b6295', '#9589bf','#beb0ea'],
+        colors=['#6b6295', '#9589bf','#beb0ea'],
         explode=[0.1] + [0] * (len(graf_df_groupby) - 1),  #Highlighting the first slice
     )
 
