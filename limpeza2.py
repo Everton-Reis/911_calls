@@ -98,3 +98,22 @@ def clean_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:
         else:
             print(f"Coluna '{col}' não encontrada no DataFrame.")
     return df
+def padronizate(file: pd.Series):
+    """
+    Padroniza valores string para letras maiúsculas.
+
+    Parameters
+    ----------
+    file : pd.Series
+        Série de dados a serem padronizados.
+
+    Returns
+    -------
+    pd.Series
+        Série com valores string padronizados para maiúsculas.
+    """
+    try:
+        return file.apply(lambda x: x.lower() if isinstance(x, str) else x)
+    except Exception as e:
+        print(f"Erro ao padronizar os valores: {e}")
+        return file
