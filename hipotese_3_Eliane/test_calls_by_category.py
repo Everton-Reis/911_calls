@@ -147,5 +147,66 @@ class TestDataProcessing(unittest.TestCase):
         result = distribution_in_percentage(empty_df)
         self.assertTrue(result.empty)
 
+
+    @patch('pandas.DataFrame.to_csv')
+    def test_save_data(self, mock_to_csv):
+        """
+        Test the save_data function to ensure it correctly saves the DataFrame 
+        to a CSV file.
+        
+        This test:
+        1. Creates a sample DataFrame.
+        2. Calls the save_data function to save it.
+        3. Verifies that pandas to_csv was called with the correct parameters.
+        """
+        #  DataFrame to save
+        df = pd.DataFrame({
+            'Category': ['Against Person', 'Against Public Property'],
+            'Count': [10, 20]
+        })
+
+        save_data(df, 'output.csv')
+        mock_to_csv.assert_called_once_with('output.csv', index=False)
+
+
+    @patch('calls_by_category.save_data')
+    @patch('calls_by_category.distribution_in_percentage')
+    @patch('calls_by_category.call_counter')
+    @patch('calls_by_category.load_data')
+    def test_process_and_save_data(self, mock_load_data, mock_call_counter, mock_distribution_in_percentage, mock_save_data):
+        """
+        Test the process_and_save_data function to ensure it processes the data 
+        and saves it correctly.
+
+        This test:
+        1. Mocks load_data to return a sample DataFrame.
+        2. Mocks call_counter and distribution_in_percentage to return expected outputs.
+        3. Verifies that the correct functions are called in the right order 
+        with the correct parameters.
+        """
+
+        mock_load_data.return_value = pd.DataFrame({
+            'description': ['HIT AND RUN', 'COMMON ASSAULT','NARCOTICS'],     
+            'district': ['D1', 'D1', 'D2']
+        })
+
+        mock_call_counter.return_value = pd.DataFrame({
+            'Category': ['Against Person', 'Against Public Property'],
+            'Count': [2, 1]
+        })
+
+        mock_distribution_in_percentage.return_value = pd.DataFrame({
+            'Category': ['Against Person', 'Against Public Property'],
+            'Percentage': [66.67, 33.33]
+        })
+
+        process_and_save_data('input.csv', 'output.csv')
+
+        mock_load_data.assert_called_once_with('input.csv')
+        mock_call_counter.assert_called_once()
+        mock_distribution_in_percentage.assert_called_once_with(mock_call_counter.return_value)
+        mock_save_data.assert_called_once_with(mock_distribution_in_percentage.return_value, 'output.csv')
+
+
 if __name__ == '__main__':
     unittest.main()

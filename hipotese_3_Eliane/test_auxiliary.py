@@ -29,6 +29,7 @@ class TestDataProcessing(unittest.TestCase):
         # Ensure the DataFrame has no null values
         self.assertFalse(df.isnull().values.any())
 
+
     @patch("pandas.DataFrame.to_csv")
     def test_save_top_descriptions(self, mock_to_csv):
         """
@@ -65,6 +66,7 @@ class TestDataProcessing(unittest.TestCase):
             actual_count = result_df.loc[result_df['Description'] == description, 'Count'].values[0]
             self.assertEqual(actual_count, count)
 
+
     @patch("pandas.read_csv")
     @patch("pandas.DataFrame.to_csv")
     def test_remove_lines(self, mock_to_csv, mock_read_csv):
@@ -98,6 +100,7 @@ class TestDataProcessing(unittest.TestCase):
 
         # Checks if the to_csv method was called once with the correct file name
         mock_to_csv.assert_called_once_with('Cleaned_Call_Distribution.csv', index=False)
+
 
 if __name__ == '__main__':
     unittest.main()

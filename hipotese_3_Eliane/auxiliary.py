@@ -1,8 +1,5 @@
 import pandas as pd
 
-filepath = "911_Calls_for_Service.csv"
-filepath2 = "Call_Distribution_Percentage.csv"
-
 def load_data(filepath):
     """
     Load data from a CSV file, selecting specific columns and dropping rows with missing values.
@@ -28,7 +25,6 @@ def load_data(filepath):
     except Exception as e:
         print(f"An error occurred: {e}")
         return pd.DataFrame() 
-
 
 def save_top_descriptions(df, output_csv='Top_50_Descriptions.csv'):
     """
@@ -61,7 +57,7 @@ def remove_lines(filepath2):
 
     Parameters
     ----------
-    file path2: str
+    filepath2: str
         The path to the CSV file that contains the data to be cleaned.
 
     Returns
@@ -88,7 +84,18 @@ def remove_lines(filepath2):
 
     return df_cleaned
 
-def main():
+def process_and_save_data(filepath, filepath2):
+    """
+    Main function to process data and save it for visualization. Calls the functions.
+
+    Parameters
+    ----------
+    filepath : str
+        The path to the CSV file containing the data '911_Calls_for_Service.csv'.
+    filepath2 : str
+        The path to the CSV file containing the data 'Call_Distribution_Percentage.csv'    
+    """
+
     # Clean data in filepath2
     print("Removing unwanted rows from the file...")
     df_cleaned = remove_lines(filepath2)
@@ -104,6 +111,3 @@ def main():
         print("Top 50 descriptions saved to 'Top_50_Descriptions.csv'.")
     else:
         print("Failed to load data or data is empty.")
-
-if __name__ == "__main__":
-    main()
