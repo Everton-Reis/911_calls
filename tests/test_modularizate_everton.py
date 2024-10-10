@@ -17,7 +17,7 @@ class TestDataProcessing(unittest.TestCase):
         })
 
         # Caso 1: Arquivo existe e colunas estão corretas
-        df = me.carregar_e_modificar_dados('911.csv', ['Local', 'Grau'])
+        df = me.carregar_e_modificar_dados('911_clean.csv', ['Local', 'Grau'])
         self.assertIsNotNone(df)
         self.assertEqual(len(df), 2)  # Agora temos 2 entradas
         self.assertEqual(df.iloc[0]['Local'], 'Local1')

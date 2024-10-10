@@ -1,6 +1,5 @@
 import pandas as pd
 from limpeza_main import clean
-from auxiliary_everton import cleaning_by_term
 import visual_everton as ve
 import math
 
