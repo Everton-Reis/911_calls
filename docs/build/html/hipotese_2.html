@@ -48,17 +48,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#motivacao">Motivação</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#consideracoes-gerais">Considerações Gerais</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#analise-principal">Analise Principal</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#clonclusoes">Clonclusões</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#conclusoes">Conclusões</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#adicionais">Adicionais:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">conclusões</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="limpeza_main.html">limpeza_main module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="main_everton.html">main_everton module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modularizate_everton.html">modularizate_everton module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules2.html">test</a></li>
 </ul>
 
         </div>
@@ -90,28 +89,25 @@
 <section id="motivacao">
 <h2>Motivação<a class="headerlink" href="#motivacao" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line">O desejo de entender em quais horários o número de ligações é maior, parte da pressuposição de que o período noturnoé notoriamente mais perigoso que os demais.</div>
-<div class="line">Muito desse senso comum se deve a baixa circulação de pedestres, além da recorrente  defasagem de iluminação pública.</div>
-<div class="line">O estudo desses dados sob tal aspecto pode ser essencial no desenvolvimento de politicas governamentais e nareorganização da rotina de patrulhas policias.</div>
+<div class="line">O desejo de entender em quais horários o número de ligações é maior parte da pressuposição de que o período noturno é notoriamente mais perigoso que os demais.</div>
+<div class="line">Muito desse senso comum se deve a baixa circulação de pedestres, além da recorrente defasagem de iluminação pública.</div>
+<div class="line">O estudo desses dados sob tal aspecto pode ser essencial no desenvolvimento de políticas governamentais e na reorganização da rotina de patrulhas policias.</div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Os estudos aqui realizados são puramente superficiais, dado a falta de experiência
-com abordagens estatísticas ou probabilísticas. A analise foi feita com o objetivo de
+com abordagens estatísticas e/ou probabilísticas. A análise foi feita com o objetivo de
 fomentar o interesse do leitor para com às hipóteses comentadas.</p>
 </div>
 </section>
 <section id="consideracoes-gerais">
 <h2>Considerações Gerais<a class="headerlink" href="#consideracoes-gerais" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line">Em primeira instância, afim de agilizar a execução do codigo, foi realizada, a filtragem do arquivo.</div>
+<div class="line">Em primeira instância, afim de agilizar a execução do código, foi realizada, a filtragem do arquivo.</div>
 <div class="line">Obtendo dessa forma somente as colunas: ‘callDateTime’, ‘priority’, ‘description’.</div>
 </div>
-</section>
-<section id="analise-principal">
-<h2>Analise Principal<a class="headerlink" href="#analise-principal" title="Link to this heading"></a></h2>
-<div class="line-block">
-<div class="line"><strong>O número de ligações no período noturno é maior.</strong></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">load_datafile</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</pre></div>
 </div>
 <div class="line-block">
 <div class="line">Para investigar essa hipótese foi necessário primeiramente ter em mãos o horário, em horas, de cada ligação.</div>
@@ -120,7 +116,15 @@ fomentar o interesse do leitor para com às hipóteses comentadas.</p>
 <ul class="simple">
 <li><p>ano/mês/dia hora:minutos:segundos</p></li>
 </ul>
-<p>Assim sendo, foi implementada a função <cite>get_hour</cite>, onde:</p>
+<div class="line-block">
+<div class="line">Assim sendo, foi implementada a função <cite>get_hour</cite>.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">get_hour</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Onde:</div>
+</div>
 <dl class="simple">
 <dt>::</dt><dd><p>Dado um DataFrame:</p>
 </dd>
@@ -156,25 +160,104 @@ fomentar o interesse do leitor para com às hipóteses comentadas.</p>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="analise-principal">
+<h2>Analise Principal<a class="headerlink" href="#analise-principal" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line">Depois agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento “quantidade de ligações por hora”.</div>
+<div class="line"><strong>O número de ligações no período noturno é maior.</strong></div>
+</div>
+<div class="line-block">
+<div class="line">Depois, agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento “quantidade de ligações por hora”.</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Com todas as informações agrupadas basta plotar o grafico</p>
+<div class="line-block">
+<div class="line">Com todas as informações bastou plotar o gráfico</div>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_graf_bar</span><span class="p">(</span><span class="n">sub_groupby_1</span><span class="p">,</span> <span class="s1">&#39;calls&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;calls_per_hour.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="clonclusoes">
-<h2>Clonclusões<a class="headerlink" href="#clonclusoes" title="Link to this heading"></a></h2>
+<section id="conclusoes">
+<h2>Conclusões<a class="headerlink" href="#conclusoes" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Com base no gráfico abaixo, é possível perceber, que o horário de menor incidência de ligações ocorre das 09:00 às 09:59.</div>
+<div class="line">Analogamente, o horário de maiores incidências ocorre das 22:00 às 22:59.</div>
+<div class="line">Ademais, em um contexto geral é notório que às ligações aumenta gradativamente a partir das 09:00, atingindo seu ápice as 22:00 voltando gradativamente a diminuir.</div>
+</div>
 <a class="reference internal image-reference" href="_images/calls_per_hour.png"><img alt="_images/calls_per_hour.png" class="align-center" src="_images/calls_per_hour.png" style="width: 700px; height: 300px;" />
 </a>
+<div class="line-block">
+<div class="line">Confirmando, dessa forma, a hipótese de que o maior número de ligações ocorre no período noturno.</div>
+</div>
 <section id="adicionais">
 <h3>Adicionais:<a class="headerlink" href="#adicionais" title="Link to this heading"></a></h3>
-<p>A gravidade das ligações é maior no período com mais.
-Chamadas sem voz estão entre as principais ocorrências de ligações.</p>
+<div class="line-block">
+<div class="line"><strong>A gravidade das ligações é maior no período com mais ligações.</strong></div>
+</div>
+<div class="line-block">
+<div class="line">De maneira ampla, entender a gravidade das ligações é essencial ao distribuir a ação de rondas policias ao longo do dia.</div>
+<div class="line">Com todas as informações agrupadas bastou plotar o gráfico</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">visual</span><span class="o">.</span><span class="n">plot_graf_pie_by_hour</span><span class="p">(</span><span class="n">sub_df_2</span><span class="p">,</span> <span class="s2">&quot;18&quot;</span><span class="p">,</span> <span class="s1">&#39;priority_per_hour.png&#39;</span><span class="p">,</span> <span class="s1">&#39;priority&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>conclusões<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line">Com base nos gráficos abaixo, é possível perceber, que por mais que o horário mude, a diferença de gravidade por horário é, de certa forma, irregular.</div>
+</div>
+<a class="reference internal image-reference" href="_images/priority_per_hour_02.png"><img alt="_images/priority_per_hour_02.png" class="align-center" src="_images/priority_per_hour_02.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/priority_per_hour_05.png"><img alt="_images/priority_per_hour_05.png" class="align-center" src="_images/priority_per_hour_05.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/priority_per_hour_09.png"><img alt="_images/priority_per_hour_09.png" class="align-center" src="_images/priority_per_hour_09.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/priority_per_hour_18.png"><img alt="_images/priority_per_hour_18.png" class="align-center" src="_images/priority_per_hour_18.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/priority_per_hour_22.png"><img alt="_images/priority_per_hour_22.png" class="align-center" src="_images/priority_per_hour_22.png" style="width: 500px; height: 300px;" />
+</a>
+<div class="line-block">
+<div class="line">Ainda assim, é possível notar um aumento de ligações de alta gravidade durante a madrugada, 02:00 às 02:59 e 05:00 às 05:59, além da presença maior de ligações de baixa e média gravidade.</div>
+<div class="line">Com base nisso, não é possível determinar se a hipótese foi refutada ou confirmada, sendo necessária uma investigação mais aprofundada.</div>
+</div>
+<p><strong>Chamadas sem voz estão entre as principais ocorrências de ligações.</strong></p>
+<div class="line-block">
+<div class="line">Podemos ainda citar a importância de se investigar os principais tipos de ocorrências ao longo do dia.</div>
+<div class="line">Portanto, depois agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento por descrição “quantidade de ligações por descrição”.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Selecionamos então as 15 ocorrências mais frequentes.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">get_first_15_most_frequency</span><span class="p">(</span><span class="n">sub_df</span><span class="p">,</span> <span class="n">sub_groupby_2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Com base nos gráficos abaixo, é possível notar, que às mudanças de horário influenciam nas principais ocorrências.</div>
+</div>
+<a class="reference internal image-reference" href="_images/description_per_hour_02.png"><img alt="_images/description_per_hour_02.png" class="align-center" src="_images/description_per_hour_02.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/description_per_hour_05.png"><img alt="_images/description_per_hour_05.png" class="align-center" src="_images/description_per_hour_05.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/description_per_hour_09.png"><img alt="_images/description_per_hour_09.png" class="align-center" src="_images/description_per_hour_09.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/description_per_hour_18.png"><img alt="_images/description_per_hour_18.png" class="align-center" src="_images/description_per_hour_18.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/description_per_hour_22.png"><img alt="_images/description_per_hour_22.png" class="align-center" src="_images/description_per_hour_22.png" style="width: 500px; height: 300px;" />
+</a>
+<div class="line-block">
+<div class="line">Por fim, analisando algumas informações essenciais, por mais que 911/ no voice e desordem sejam sempre as mais frequentes</div>
+</div>
+<ol class="arabic simple">
+<li><p>Durante o período noturno, 18:00 às 18:59 e 22:00 às 22:59, o número de ocorrências por narcóticos é consideravelmente maior que nos demais</p></li>
+<li><p>Das 02:00 às 02:59 e 05:00 às 05:59, o número de assaltos se destaca.</p></li>
+<li><p>E das 09:00 às 09:59, acidentes de carro são a terceira ocorrência mais frequente.</p></li>
+</ol>
 </section>
 </section>
 </section>
