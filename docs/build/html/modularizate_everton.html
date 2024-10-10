@@ -49,13 +49,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="hipotese_1_Everton.html">hipotese_1_Everton</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="main_everton.html">main_everton module</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">modularizate_everton module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#modularizate_everton.calcular_pontuacao"><code class="docutils literal notranslate"><span class="pre">calcular_pontuacao()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#modularizate_everton.carregar_e_modificar_dados"><code class="docutils literal notranslate"><span class="pre">carregar_e_modificar_dados()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#modularizate_everton.gerar_graficos"><code class="docutils literal notranslate"><span class="pre">gerar_graficos()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#modularizate_everton.pesos_normalizados"><code class="docutils literal notranslate"><span class="pre">pesos_normalizados()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">modularizate_everton module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="visual_everton.html">visual_everton module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="auxiliary_everton.html">auxiliary_everton module</a></li>
 </ul>
@@ -93,85 +87,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-modularizate_everton">
-<span id="modularizate-everton-module"></span><h1>modularizate_everton module<a class="headerlink" href="#module-modularizate_everton" title="Link to this heading"></a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="modularizate_everton.calcular_pontuacao">
-<span class="sig-prename descclassname"><span class="pre">modularizate_everton.</span></span><span class="sig-name descname"><span class="pre">calcular_pontuacao</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peso_mapeamento</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#modularizate_everton.calcular_pontuacao" title="Link to this definition"></a></dt>
-<dd><p>Calculates the total score and the number of crimes per location with a precision of 3 decimal places.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – DataFrame containing data with the columns ‘Local’ and ‘Grau’.</p></li>
-<li><p><strong>weight_mapping</strong> (<em>dict</em>) – Dictionary mapping each degree of crime to a weight.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>DataFrame containing the total score and the number of crimes per location, sorted by total score in descending order.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pd.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="modularizate_everton.carregar_e_modificar_dados">
-<span class="sig-prename descclassname"><span class="pre">modularizate_everton.</span></span><span class="sig-name descname"><span class="pre">carregar_e_modificar_dados</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modularizate_everton.carregar_e_modificar_dados" title="Link to this definition"></a></dt>
-<dd><p>Loads and cleans data from the specified file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filepath</strong> (<em>str</em>) – Path to the CSV file to be loaded.</p></li>
-<li><p><strong>columns</strong> (<em>list</em>) – List of columns to be retained in the DataFrame.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Cleaned DataFrame containing only the specified columns, without data classified as “Out of Service”.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pd.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="modularizate_everton.gerar_graficos">
-<span class="sig-prename descclassname"><span class="pre">modularizate_everton.</span></span><span class="sig-name descname"><span class="pre">gerar_graficos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resultado</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#modularizate_everton.gerar_graficos" title="Link to this definition"></a></dt>
-<dd><p>Generates charts from the result DataFrame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>result</strong> (<em>pd.DataFrame</em>) – DataFrame containing the columns ‘Local’, ‘Total_Score’, and ‘Crime_Count’.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>This function does not return any value; it only generates and saves charts.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="modularizate_everton.pesos_normalizados">
-<span class="sig-prename descclassname"><span class="pre">modularizate_everton.</span></span><span class="sig-name descname"><span class="pre">pesos_normalizados</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dados</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pesos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#modularizate_everton.pesos_normalizados" title="Link to this definition"></a></dt>
-<dd><p>Calculates the normalized score using logarithms and standard weights (which help balance the weight for each severity of occurrence).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dados</strong> (<em>dict</em>) – Dictionary containing the quantity data for each severity.</p></li>
-<li><p><strong>pesos</strong> (<em>dict</em>) – Dictionary containing the weights for each severity.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dictionary containing the normalized score for each severity.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
+  <section id="modularizate-everton-module">
+<h1>modularizate_everton module<a class="headerlink" href="#modularizate-everton-module" title="Link to this heading"></a></h1>
 </section>
 
 
