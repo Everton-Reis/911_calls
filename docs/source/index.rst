@@ -6,10 +6,21 @@
 911_Calls documentation
 =======================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+| Welcome to the `911_Calls` Repository Documentation
 
+| In the following files:
+
+* `hipotese_1`, `hipotese_2` and `hipotese_3`
+   You will find detailed information regarding each hypothesis, including: motivation, data visualization, and conclusions.
+
+* `src`
+   Contains the directory with the executable .py files.
+
+* `tests`
+   Contains the directory with the unittest modules.
+
+* `limpeza_main` and `auxiliary_geral`
+   Contains the data cleaning modules.
 
 .. toctree::
    :maxdepth: 2

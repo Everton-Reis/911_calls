@@ -44,8 +44,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<<<<<<< HEAD
 <li class="toctree-l1"><a class="reference internal" href="hipotese_2.html">Hipótese 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hipotese_3.html"># Hypothesis 3: Distribution of Calls by District in Baltimore</a></li>
+=======
+<li class="toctree-l1"><a class="reference internal" href="hipotese_2.html">Hypothesis 2</a></li>
+>>>>>>> 695801a580553c75b60050cb2c77fd8eddbcaeca
 <li class="toctree-l1"><a class="reference internal" href="limpeza_main.html">limpeza_main module</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="hipotese_1_Everton.html">hipotese_1_Everton</a><ul class="current">
@@ -98,13 +102,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="auxiliary_everton.clean_DataFrame">
 <span class="sig-prename descclassname"><span class="pre">auxiliary_everton.</span></span><span class="sig-name descname"><span class="pre">clean_DataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#auxiliary_everton.clean_DataFrame" title="Link to this definition"></a></dt>
-<dd><p>Limpa as linhas do DataFrame que possuem ao menos um valor faltando em uma de suas linhas.</p>
+<dd><p>Cleans the rows of the DataFrame that have at least one missing value in any of their rows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df</strong> (<em>pd.DataFrame</em>) – DataFrame que contém as colunas a serem limpas.</p>
+<dd class="field-odd"><p><strong>df</strong> (<em>pd.DataFrame</em>) – DataFrame containing the columns to be cleaned.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>DataFrame com as colunas/linhas limpas.</p>
+<dd class="field-even"><p>DataFrame with the columns/rows cleaned.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
@@ -115,17 +119,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="auxiliary_everton.cleaning_by_term">
 <span class="sig-prename descclassname"><span class="pre">auxiliary_everton.</span></span><span class="sig-name descname"><span class="pre">cleaning_by_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#auxiliary_everton.cleaning_by_term" title="Link to this definition"></a></dt>
-<dd><p>Remove linhas de um DataFrame onde uma coluna específica contém um valor específico, alterando o DataFrame original.</p>
+<dd><p>Removes rows from a DataFrame where a specific column contains a specific value, modifying the original DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file</strong> (<em>pandas.DataFrame</em>) – DataFrame a ser limpo.</p></li>
-<li><p><strong>column</strong> (<em>str</em>) – Coluna na qual a limpeza será aplicada.</p></li>
-<li><p><strong>term</strong> (<em>any</em>) – Termo que será removido da coluna.</p></li>
+<li><p><strong>file</strong> (<em>pandas.DataFrame</em>) – DataFrame to be cleaned.</p></li>
+<li><p><strong>column</strong> (<em>str</em>) – Column on which the cleaning will be applied.</p></li>
+<li><p><strong>term</strong> (<em>any</em>) – Term that will be removed from the column.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>O DataFrame original com as linhas removidas onde o termo estava presente na coluna.</p>
+<dd class="field-even"><p>The original DataFrame with rows removed where the term was present in the column.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
@@ -135,17 +139,17 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="auxiliary_everton.get_columns">
-<span class="sig-prename descclassname"><span class="pre">auxiliary_everton.</span></span><span class="sig-name descname"><span class="pre">get_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auxiliary_everton.get_columns" title="Link to this definition"></a></dt>
-<dd><p>Retorna um sub_file contendo apenas as colunas desejadas.</p>
+<span class="sig-prename descclassname"><span class="pre">auxiliary_everton.</span></span><span class="sig-name descname"><span class="pre">get_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#auxiliary_everton.get_columns" title="Link to this definition"></a></dt>
+<dd><p>Returns a sub_file containing only the desired columns.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file</strong> (<em>pandas.DataFrame</em>) – DataFrame do qual o sub_file com as colunas desejadas será extraído.</p></li>
-<li><p><strong>columns</strong> (<em>list</em>) – Lista das colunas desejadas no subfile.</p></li>
+<li><p><strong>file</strong> (<em>pandas.DataFrame</em>) – DataFrame from which the sub_file with the desired columns will be extracted.</p></li>
+<li><p><strong>columns</strong> (<em>list</em>) – List of desired columns in the subfile.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>DataFrame contendo apenas as colunas especificadas.</p>
+<dd class="field-even"><p>DataFrame containing only the specified columns.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
