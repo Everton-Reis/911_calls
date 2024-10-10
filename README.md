@@ -36,7 +36,6 @@ To work with this project, follow these steps:
 
 Install the necessary Python packages by running the following command in your terminal:
 
-``bash
 pip install -r requirements.txt
 
 ### Data Cleaning
@@ -51,17 +50,21 @@ Make sure the dataset is in the `root` and run `limpeza_main.py` to generate the
 
 To run the modules for Hypothesis 1 (Everton):
 
+```
 cd src/hipotese_1_Everton
 python main_everton.py
+```
 
 To run the modules for Hypothesis 2 (Stephany):
+```
 cd ../hipotese_2_Stephany
 python main_stephany.py
-
+```
 To run the modules for Hypothesis 3 (Eliane):
+```
 cd ../hipotese_3_Eliane
 python main_eliane.py
-
+```
 ##### Generate HTML Documentation
 
 2. Navigate to the docs folder and execute the following command to generate the HTML:

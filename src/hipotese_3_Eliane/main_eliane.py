@@ -3,7 +3,7 @@ import auxiliary_eliane as ax
 import visual_eliane as vs
 
 
-filepath = "911_clean.csv"
+filepath = "../../911_clean.csv"
 
 filepath2 = "Call_Distribution_Percentage.csv"
 
