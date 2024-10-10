@@ -33,7 +33,7 @@ def main():
     None
         The function does not return any value, but generates graphs based on the calculated results.
     """
-    filepath1 = '911.csv'
+    filepath1 = '911_clean.csv'
 
     columns = ['priority', 'PoliceDistrict']  # Columns that will be used for the analysis
 

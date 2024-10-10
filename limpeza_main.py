@@ -1,27 +1,7 @@
 import pandas as pd
-import auxiliary_everton as lp
+import auxiliar_geral as lp
 
 columns = ['recordId', 'callDateTime', 'priority', 'district', 'description', 'PoliceDistrict', 'ESRI_OID']
-
-def save_clean(archive: str) -> None:
-    """
-    Saves a cleaned CSV file containing only the relevant columns for analysis.
-
-    Parameters
-    ----------
-    archive : str
-        The name of the CSV file to be cleaned.
-    
-    Returns
-    -------
-    None
-        The function saves the cleaned DataFrame to a file named '911_clean.csv'.
-    """
-    try:
-        df_clean = clean(archive, columns)  # Creates a file with only the columns that everyone will work on
-        df_clean.to_csv('911_clean.csv', index=False)
-    except Exception as e:
-        print(f"Error saving the file '{archive}': {e}")
 
 def clean(name: str, columns: list) -> pd.DataFrame:
     """
@@ -51,3 +31,25 @@ def clean(name: str, columns: list) -> pd.DataFrame:
 
     return df
 
+def save_clean(archive: str) -> None:
+    """
+    Saves a cleaned CSV file containing only the relevant columns for analysis.
+
+    Parameters
+    ----------
+    archive : str
+        The name of the CSV file to be cleaned.
+    
+    Returns
+    -------
+    None
+        The function saves the cleaned DataFrame to a file named '911_clean.csv'.
+    """
+    try:
+        df_clean = clean(archive, columns)  # Creates a file with only the columns that everyone will work on
+        df_clean = df_clean.drop_duplicates()
+        df_clean.to_csv('911_clean.csv', sep='\t', index=False)
+    except Exception as e:
+        print(f"Error saving the file '{archive}': {e}")
+
+save_clean('911_Calls_for_Service.csv')
