@@ -55,7 +55,7 @@ Assim sendo, foi implementada a função `get_hour`, onde:
 | 2021/01/04 17:34:00+00  | 17   |
 +-------------------------+------+
 
-Depois agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento "quantidade de ligações por hora"
+| Depois agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento "quantidade de ligações por hora".
 
 .. code-block:: python
 
@@ -66,6 +66,14 @@ Com todas as informações agrupadas basta plotar o grafico
 .. code-block:: python
 
     plot_graf_bar(sub_groupby_1, 'calls', 'hour', 'calls_per_hour.png')
+
+Clonclusões
+-----------
+
+.. image:: ../../data/calls_per_hour.png
+   :width: 700px
+   :height: 300px
+   :align: center
     
 Adicionais:
 ^^^^^^^^^^^^^^

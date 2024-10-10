@@ -70,9 +70,9 @@ Com todas as informações agrupadas basta plotar o grafico
 Clonclusões
 -----------
 
-.. image:: images/my_image.png
-   :width: 400px
-   :height: 200px
+.. image:: ../../data/calls_per_hour.png
+   :width: 700px
+   :height: 300px
    :align: center
     
 Adicionais:

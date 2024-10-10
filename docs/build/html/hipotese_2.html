@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hipótese 2 &mdash; 911_Calls 1.0 documentation</title>
+  <title>Hipótese 2 &mdash; 911_calls 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,6 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="limpeza_main module" href="limpeza_main.html" />
     <link rel="prev" title="911_Calls documentation" href="index.html" /> 
 </head>
 
@@ -31,7 +32,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            911_Calls
+            911_calls
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -46,12 +47,18 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Hipótese 2</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#motivacao">Motivação</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#consideracoes-gerais">Considerações Gerais</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#analise-principal">Analise Principal</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analise-principal">Analise Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clonclusoes">Clonclusões</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#adicionais">Adicionais:</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="limpeza_main.html">limpeza_main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_everton.html">main_everton module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modularizate_everton.html">modularizate_everton module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
 </ul>
 
         </div>
@@ -60,7 +67,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">911_Calls</a>
+          <a href="index.html">911_calls</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -149,7 +156,9 @@ fomentar o interesse do leitor para com às hipóteses comentadas.</p>
 </tr>
 </tbody>
 </table>
-<p>Depois agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento “quantidade de ligações por hora”</p>
+<div class="line-block">
+<div class="line">Depois agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento “quantidade de ligações por hora”.</div>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -157,6 +166,11 @@ fomentar o interesse do leitor para com às hipóteses comentadas.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_graf_bar</span><span class="p">(</span><span class="n">sub_groupby_1</span><span class="p">,</span> <span class="s1">&#39;calls&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;calls_per_hour.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="clonclusoes">
+<h2>Clonclusões<a class="headerlink" href="#clonclusoes" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/calls_per_hour.png"><img alt="_images/calls_per_hour.png" class="align-center" src="_images/calls_per_hour.png" style="width: 700px; height: 300px;" />
+</a>
 <section id="adicionais">
 <h3>Adicionais:<a class="headerlink" href="#adicionais" title="Link to this heading"></a></h3>
 <p>A gravidade das ligações é maior no período com mais.
@@ -170,6 +184,7 @@ Chamadas sem voz estão entre as principais ocorrências de ligações.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="911_Calls documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="limpeza_main.html" class="btn btn-neutral float-right" title="limpeza_main module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

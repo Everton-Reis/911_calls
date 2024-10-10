@@ -5,6 +5,14 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../../src/hipotese_1_Everton'))
+sys.path.insert(0, os.path.abspath('../../src/hipotese_2_Stephany'))
+sys.path.insert(0, os.path.abspath('../../src/hipotese_3_Eliane'))
+sys.path.insert(0, os.path.abspath('../../tests'))
+sys.path.insert(0, os.path.abspath('../../src'))
+sys.path.insert(0, os.path.abspath('../../'))
 
 project = '911_Calls'
 copyright = '2024, Stephany Casali Oliveira, Everton Costa Reis, Eliane da Silva Moreira'
@@ -15,7 +23,10 @@ release = '1.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
+napoleon_numpy_docstring = True
 
+master_doc = 'index'
+project = '911_calls'
 templates_path = ['_templates']
 exclude_patterns = []
 

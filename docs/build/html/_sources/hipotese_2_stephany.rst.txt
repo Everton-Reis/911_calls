@@ -1,0 +1,37 @@
+hipotese_2_stephany
+------------------
+
+Submodules
+----------
+
+hipotese\_2\_Stephany.auxiliary\_stephany module
+------------------------------------------------
+
+.. automodule:: hipotese_2_Stephany.auxiliary_stephany
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+hipotese\_2\_Stephany.main\_hipotese\_2 module
+----------------------------------------------
+
+.. automodule:: hipotese_2_Stephany.main_hipotese_2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+hipotese\_2\_Stephany.visual\_stephany module
+---------------------------------------------
+
+.. automodule:: hipotese_2_Stephany.visual_stephany
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: hipotese_2_Stephany
+   :members:
+   :undoc-members:
+   :show-inheritance:

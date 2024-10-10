@@ -1,0 +1,7 @@
+main\_hipotese\_2 module
+==========================
+
+.. automodule:: main_hipotese_2
+   :members:
+   :undoc-members:
+   :show-inheritance:
