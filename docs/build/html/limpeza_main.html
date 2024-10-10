@@ -45,11 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="hipotese_2.html">Hypothesis 2</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">limpeza_main module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#limpeza_main.clean"><code class="docutils literal notranslate"><span class="pre">clean()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#limpeza_main.save_clean"><code class="docutils literal notranslate"><span class="pre">save_clean()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">limpeza_main module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules2.html">test</a></li>
 </ul>
@@ -78,45 +74,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-limpeza_main">
-<span id="limpeza-main-module"></span><h1>limpeza_main module<a class="headerlink" href="#module-limpeza_main" title="Link to this heading"></a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="limpeza_main.clean">
-<span class="sig-prename descclassname"><span class="pre">limpeza_main.</span></span><span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#limpeza_main.clean" title="Link to this definition"></a></dt>
-<dd><p>Cleans the data from a CSV file, keeping only useful columns and cleaning irregular data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – The name of the CSV file to be read. The file must be in tab-delimited format (different from the common comma format).</p></li>
-<li><p><strong>columns</strong> (<em>list</em>) – List of columns that will remain in the DataFrame.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A DataFrame containing only the specified columns, with irregular data handled.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pd.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="limpeza_main.save_clean">
-<span class="sig-prename descclassname"><span class="pre">limpeza_main.</span></span><span class="sig-name descname"><span class="pre">save_clean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archive</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#limpeza_main.save_clean" title="Link to this definition"></a></dt>
-<dd><p>Saves a cleaned CSV file containing only the relevant columns for analysis.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>archive</strong> (<em>str</em>) – The name of the CSV file to be cleaned.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The function saves the cleaned DataFrame to a file named ‘911_clean.csv’.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
+  <section id="limpeza-main-module">
+<h1>limpeza_main module<a class="headerlink" href="#limpeza-main-module" title="Link to this heading"></a></h1>
 </section>
 
 
