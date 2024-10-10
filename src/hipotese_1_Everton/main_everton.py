@@ -2,10 +2,6 @@ import numpy as np
 import pandas as pd
 import modularizate_everton as me
 from auxiliary_everton import cleaning_by_term
-import sys
-import os
-sys.path.append(os.path.abspath('../..'))
-
 
 # Defining weight mapping
 peso_inicial = {
@@ -33,7 +29,7 @@ def main():
     None
         The function does not return any value, but generates graphs based on the calculated results.
     """
-    filepath1 = '911.csv'
+    filepath1 = '../../911_clean.csv'
 
     columns = ['priority', 'PoliceDistrict']  # Columns that will be used for the analysis
 
