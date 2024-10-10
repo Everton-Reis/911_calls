@@ -1,7 +1,10 @@
 import pandas as pd
-from limpeza_main import clean
 import visual_everton as ve
 import math
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from limpeza_main import clean
 
 def carregar_e_modificar_dados(filepath, columns):
     """

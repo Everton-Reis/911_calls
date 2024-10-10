@@ -1,5 +1,5 @@
 import pandas as pd
-import auxiliar_geral as lp
+import auxiliary_geral as lp
 
 columns = ['recordId', 'callDateTime', 'priority', 'district', 'description', 'PoliceDistrict', 'ESRI_OID']
 

@@ -1,8 +1,10 @@
 import numpy as np
 import pandas as pd
 import modularizate_everton as me
-from auxiliary_everton import cleaning_by_term
-
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from auxiliary_geral import cleaning_by_term
 # Defining weight mapping
 peso_inicial = {
         "Non-Emergency": 1,
