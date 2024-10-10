@@ -1,4 +1,4 @@
-Hypothesis 2
+Hypothesis 2: Some types of incidents occur more frequently at night or during specific hours.
 ===========
 
 Motivation
