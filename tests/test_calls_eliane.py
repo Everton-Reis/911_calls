@@ -1,7 +1,12 @@
 import unittest
 import pandas as pd
 from unittest.mock import patch, mock_open
-from calls_by_category import load_data, categorize_activity, call_counter, distribution_in_percentage, save_data, process_and_save_data
+import sys
+import os
+sys.path.append(os.path.abspath('..'))
+from src.hipotese_3_Eliane.calls_eliane import load_data, categorize_activity, call_counter
+from src.hipotese_3_Eliane.calls_eliane import distribution_in_percentage, save_data, process_and_save_data
+
 
 class TestDataProcessing(unittest.TestCase):
     """
@@ -147,7 +152,6 @@ class TestDataProcessing(unittest.TestCase):
         result = distribution_in_percentage(empty_df)
         self.assertTrue(result.empty)
 
-
     @patch('pandas.DataFrame.to_csv')
     def test_save_data(self, mock_to_csv):
         """
@@ -167,7 +171,6 @@ class TestDataProcessing(unittest.TestCase):
 
         save_data(df, 'output.csv')
         mock_to_csv.assert_called_once_with('output.csv', index=False)
-
 
     @patch('calls_by_category.save_data')
     @patch('calls_by_category.distribution_in_percentage')
@@ -206,6 +209,63 @@ class TestDataProcessing(unittest.TestCase):
         mock_call_counter.assert_called_once()
         mock_distribution_in_percentage.assert_called_once_with(mock_call_counter.return_value)
         mock_save_data.assert_called_once_with(mock_distribution_in_percentage.return_value, 'output.csv')
+
+
+    # The following cases deal with possible errors.
+
+    @patch("pandas.read_csv")
+    def test_load_data_with_empty_file(self, mock_read_csv):
+        """
+        Test load_data with an empty file.
+        """
+
+        mock_read_csv.return_value = pd.DataFrame(columns=['recordId', 'district', 'description'])
+        df = load_data("empty_file.csv")
+        self.assertTrue(df.empty)
+
+    def test_call_counter_empty_dataframe(self):
+        """
+        Test call_counter with an empty DataFrame.
+        """
+
+        empty_df = pd.DataFrame(columns=['district', 'description'])
+        result = call_counter(empty_df)
+        self.assertTrue(result.empty) 
+
+    def test_distribution_in_percentage_empty_dataframe(self):
+        """
+        Test distribution_in_percentage with an empty DataFrame.
+        """
+
+        empty_df = pd.DataFrame(columns=['district', 'category', 'call_count'])
+        result = distribution_in_percentage(empty_df)
+        self.assertTrue(result.empty) 
+
+    def test_distribution_in_percentage_no_calls(self):
+        """
+        Test distribution_in_percentage when all call counts are zero.
+        """
+
+        df = pd.DataFrame({
+            'district': ['D1', 'D1', 'D2'],
+            'category': ['Against Person', 'Against Public Property', 'Against Public Welfare'],
+            'call_count': [0, 0, 0]
+        })
+        result = distribution_in_percentage(df)
+        self.assertTrue(result['percentage'].isnull().all()) 
+
+
+    @patch('calls_by_category.load_data')
+    def test_process_and_save_data_load_error(self, mock_load_data):
+        """
+        Test process_and_save_data when load_data raises an error.
+        """
+
+        mock_load_data.side_effect = FileNotFoundError("File not found.")
+        output_filepath = "output.csv"
+
+        with self.assertRaises(FileNotFoundError):
+            process_and_save_data("dummy_path.csv", output_filepath)
 
 
 if __name__ == '__main__':

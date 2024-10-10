@@ -29,18 +29,9 @@ def load_data(filepath):
 def save_top_descriptions(df, output_csv='Top_50_Descriptions.csv'):
     """
     Extracts the 50 most frequent descriptions from the DataFrame and saves them to a CSV file.
-
-    Parameters
-    ----------
-    df : pandas.DataFrame
-        The input DataFrame that contains the 'description' column.
-    output_csv : str
-        The path where the output CSV file will be saved (default is 'Top_50_Descriptions.csv').
-
-    Returns
-    -------
-    top_descriptions_df
     """
+    if df.empty or 'description' not in df.columns:
+        raise ValueError("DataFrame is empty or missing 'description' column")
     
     top_descriptions = df['description'].value_counts().head(50)
     top_descriptions_df = top_descriptions.reset_index()
