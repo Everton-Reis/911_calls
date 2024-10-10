@@ -2,6 +2,10 @@ import numpy as np
 import pandas as pd
 import modularizate_everton as me
 from auxiliary_everton import cleaning_by_term
+import sys
+import os
+sys.path.append(os.path.abspath('../..'))
+
 
 # Defining weight mapping
 peso_inicial = {
