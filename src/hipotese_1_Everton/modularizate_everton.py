@@ -6,69 +6,69 @@ import math
 
 def carregar_e_modificar_dados(filepath, columns):
     """
-    Carrega e limpa os dados a partir do arquivo especificado.
+    Loads and cleans data from the specified file.
 
     Parameters
     ----------
     filepath : str
-        Caminho para o arquivo CSV a ser carregado.
+        Path to the CSV file to be loaded.
     columns : list
-        Lista de colunas a serem mantidas no DataFrame.
+        List of columns to be retained in the DataFrame.
 
     Returns
     -------
     pd.DataFrame
-        DataFrame limpo contendo apenas as colunas especificadas, sem os dados classificados como "Out of Service".
+        Cleaned DataFrame containing only the specified columns, without data classified as "Out of Service".
     """
     try:
         df = clean(filepath, columns)
     except FileNotFoundError:
-        print(f"Erro: O arquivo '{filepath}' não foi encontrado.")
+        print(f"Error: The file '{filepath}' was not found.")
         return None
     except ValueError as e:
-        print(f"Erro ao carregar colunas do arquivo: {e}")
+        print(f"Error loading columns from the file: {e}")
         return None
 
     return df
 
 def pesos_normalizados(dados: dict, pesos: dict) -> dict:
     """
-    Calcula a pontuação normalizada, utilizando logaritimos e pesos padrões (que ajudam a balancear o peso para cada gravidade de ocorrência). 
+    Calculates the normalized score using logarithms and standard weights (which help balance the weight for each severity of occurrence).
 
     Parameters
     ----------
     dados : dict
-        Dicionário contendo os dados de quantidade para cada grau.
+        Dictionary containing the quantity data for each severity.
 
     pesos : dict
-        Dicionário contendo os pesos para cada grau.
+        Dictionary containing the weights for each severity.
 
     Returns
     -------
     dict
-        Dicionário contendo a pontuação normalizada para cada grau.
+        Dictionary containing the normalized score for each severity.
     """
     try:
         if not set(pesos.keys()).issubset(dados.keys()):
-            raise ValueError("Alguns graus não estão presentes no dicionário de dados.")
+            raise ValueError("Some degrees are not present in the data dictionary.")
         
-        # Normalização usando log
+        # Normalization using log
         valores = list(dados.values())
         if not valores:
-            raise ValueError("O dicionário de dados está vazio.")
-        # +1 para evitar log(0)
+            raise ValueError("The data dictionary is empty.")
+        # +1 for evite log(0)
         log_min_val = math.log(min(valores) + 1)
         log_max_val = math.log(max(valores) + 1)
 
         if log_max_val == log_min_val:
-            raise ValueError("Todos os valores no dicionário de dados são iguais. A normalização não é possível.") # Nesse caso, nossa normalização vai falhar, pois o denominador do grau vai ser zero.
+            raise ValueError("All values in the data dictionary are equal. Normalization is not possible.")  # In this case, our normalization will fail because the degree denominator will be zero.
         
         log_normalizado = {
-            grau: (math.log(quantidade + 1) - log_min_val) / (log_max_val - log_min_val) # As ocorrências de grau "emergency", por serem em uma quantidade extremamente menor, são zeradas (e elas, de fato, não influenciam na análise)
+            grau: (math.log(quantidade + 1) - log_min_val) / (log_max_val - log_min_val) # The occurrences of degree "emergency", due to being extremely fewer, are zeroed (and they indeed do not influence the analysis)
             for grau, quantidade in dados.items()
         }
 
-        # Cálculo da pontuação final aplicando os pesos e arredondando para 3 casas decimais
+        # Calculate the final score applying the weights and rounding to 3 decimal places
         pontuacao = {
             grau: round(log_normalizado[grau] * pesos[grau], 3)
             for grau in log_normalizado
@@ -77,35 +77,35 @@ def pesos_normalizados(dados: dict, pesos: dict) -> dict:
         return pontuacao
     
     except ValueError as ve:
-        print(f"Erro de valor: {ve}")
+        print(f"Value error: {ve}")
         return {}
     except Exception as e:
-        print(f"Ocorreu um erro inesperado: {e}")
+        print(f"An unexpected error ocurred: {e}")
         return {}
 
 def calcular_pontuacao(df: pd.DataFrame, peso_mapeamento: dict) -> pd.DataFrame:
     """
-    Calcula a pontuação total e a quantidade de crimes por local com precisão de 3 casas decimais.
+    Calculates the total score and the number of crimes per location with a precision of 3 decimal places.
 
     Parameters
     ----------
     df : pd.DataFrame
-        DataFrame contendo os dados com as colunas 'Local' e 'Grau'.
-    peso_mapeamento : dict
-        Dicionário mapeando cada grau de crime a um peso.
+        DataFrame containing data with the columns 'Local' and 'Grau'.
+    weight_mapping : dict
+        Dictionary mapping each degree of crime to a weight.
 
     Returns
     -------
     pd.DataFrame
-        DataFrame contendo a pontuação total e a quantidade de crimes por local, ordenado pela pontuação total em ordem decrescente.
+        DataFrame containing the total score and the number of crimes per location, sorted by total score in descending order.
     """
     try:
         contagem = df.groupby(['Local', 'Grau']).size().reset_index(name='Contagem')
     except KeyError as e:
-        print(f"Erro: A coluna {e} não foi encontrada no DataFrame.")
+        print(f"Error: The column {e} was not found in the DataFrame.")
         return None
     except Exception as e:
-        print(f"Erro ao agrupar dados: {e}")
+        print(f"Error grouping data: {e}")
         return None
 
     try:
@@ -123,23 +123,23 @@ def calcular_pontuacao(df: pd.DataFrame, peso_mapeamento: dict) -> pd.DataFrame:
         
         return resultado.sort_values(by='Pontuacao_Total', ascending=False)
     except Exception as e:
-        print(f"Erro ao calcular a pontuação: {e}")
+        print(f"Error calculating score: {e}")
         return None
 
 def gerar_graficos(resultado: pd.DataFrame) -> None:
     """
-    Gera gráficos a partir do DataFrame de resultados.
+    Generates charts from the result DataFrame.
 
     Parameters
     ----------
-    resultado : pd.DataFrame
-        DataFrame contendo as colunas 'Local', 'Pontuacao_Total' e 'Quantidade_Crimes'.
+    result : pd.DataFrame
+        DataFrame containing the columns 'Local', 'Total_Score', and 'Crime_Count'.
 
     Returns
     -------
     None
-        Esta função não retorna nenhum valor, apenas gera e salva gráficos.
+        This function does not return any value; it only generates and saves charts.
     """
-    ve.bar1_plot_df(resultado, 'Local', 'Pontuacao_Total', 'Quantidade_Crimes', 'Grau Perigo')
+    ve.bar1_plot_df(resultado, 'Local', 'Pontuacao_Total', 'Quantidade_Crimes', 'Mais perigosos')
     ve.bar2_plot_df(resultado, 'Pontuacao_Total', 'Quantidade_Crimes', 'Quantidade x Pontuação')
-    ve.scatter_plot_df(resultado, 'Quantidade_Crimes', 'Pontuacao_Total', 'Locais + perigosos')
+    ve.scatter_plot_df(resultado, 'Quantidade_Crimes', 'Pontuacao_Total', 'Relação')
