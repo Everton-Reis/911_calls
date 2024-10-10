@@ -44,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="hipotese_2.html">Hipótese 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hipotese_2.html">Hypothesis 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="limpeza_main.html">limpeza_main module</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="hipotese_1_Everton.html">hipotese_1_Everton</a><ul class="current">
@@ -96,45 +96,54 @@
 <span id="visual-everton-module"></span><h1>visual_everton module<a class="headerlink" href="#module-visual_everton" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="visual_everton.bar1_plot_df">
-<span class="sig-prename descclassname"><span class="pre">visual_everton.</span></span><span class="sig-name descname"><span class="pre">bar1_plot_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linha_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coluna_2_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coluna_2_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titulo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nome_arquivo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grafico_barra1.png'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#visual_everton.bar1_plot_df" title="Link to this definition"></a></dt>
-<dd><p>Cria um gráfico de barra a partir do DataFrame de entrada, tendo como eixo x a linha_1 e y a coluna_2_1 e/ou coluna_2_2.</p>
-<section id="parametros">
-<h2>Parâmetros<a class="headerlink" href="#parametros" title="Link to this heading"></a></h2>
-<p>df (pd.DataFrame): O DataFrame com os dados analisados.
-linha_1 (str): Uma das colunas do DataFrame (Contudo, vai representar o eixo x).
-coluna_2_1 (str): Uma das colunas do DataFrame.
-coluna_2_2 (str): Uma das colunas do DataFrame.
-titulo (str): Título para o gráfico de barra.
-nome_arquivo (str): Nome do arquivo onde o gráfico será salvo.</p>
-</section>
+<span class="sig-prename descclassname"><span class="pre">visual_everton.</span></span><span class="sig-name descname"><span class="pre">bar1_plot_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_2_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_2_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bar_chart1.png'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#visual_everton.bar1_plot_df" title="Link to this definition"></a></dt>
+<dd><p>Creates a bar chart from the input DataFrame, using line_1 for the x-axis and column_2_1 and/or column_2_2 for the y-axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>pd.DataFrame</strong><strong>)</strong> (<em>df</em>)</p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong> (<em>file_name</em>)</p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visual_everton.bar2_plot_df">
-<span class="sig-prename descclassname"><span class="pre">visual_everton.</span></span><span class="sig-name descname"><span class="pre">bar2_plot_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linha_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coluna_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titulo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nome_arquivo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grafico_barra2.png'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#visual_everton.bar2_plot_df" title="Link to this definition"></a></dt>
-<dd><p>Cria um gráfico de barra a partir do DataFrame de entrada, tendo como eixo x a linha_1 e y a coluna_2.</p>
-<section id="id1">
-<h2>Parâmetros<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p>df (pd.DataFrame): O DataFrame com os dados analisados.
-linha_1 (str): Uma das colunas do DataFrame (Contudo, vai representar o eixo x).
-coluna_2 (str): Uma das colunas do DataFrame.
-titulo (str): Título para o gráfico de barra.
-nome_arquivo (str): Nome do arquivo onde o gráfico será salvo.</p>
-</section>
+<span class="sig-prename descclassname"><span class="pre">visual_everton.</span></span><span class="sig-name descname"><span class="pre">bar2_plot_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bar_chart2.png'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#visual_everton.bar2_plot_df" title="Link to this definition"></a></dt>
+<dd><p>Creates a bar chart from the input DataFrame, using line_1 for the x-axis and column_2 for the y-axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>pd.DataFrame</strong><strong>)</strong> (<em>df</em>)</p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong> (<em>file_name</em>)</p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visual_everton.scatter_plot_df">
-<span class="sig-prename descclassname"><span class="pre">visual_everton.</span></span><span class="sig-name descname"><span class="pre">scatter_plot_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linha_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coluna_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titulo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nome_arquivo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grafico_scatter.png'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#visual_everton.scatter_plot_df" title="Link to this definition"></a></dt>
-<dd><p>Cria um gráfico de scatter (dispersão) a partir do DataFrame de entrada, tendo como eixo x a linha_1 e y a coluna_2.</p>
-<section id="id2">
-<h2>Parâmetros<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>df (pd.DataFrame): O DataFrame com os dados analisados.
-linha_1 (str): Uma das colunas do DataFrame (Contudo, vai representar o eixo x).
-coluna_2 (str): Uma das colunas do DataFrame.
-titulo (str): Título para o gráfico de scatter.
-nome_arquivo (str): Nome do arquivo onde o gráfico será salvo.</p>
-</section>
+<span class="sig-prename descclassname"><span class="pre">visual_everton.</span></span><span class="sig-name descname"><span class="pre">scatter_plot_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'scatter_chart.png'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#visual_everton.scatter_plot_df" title="Link to this definition"></a></dt>
+<dd><p>Creates a scatter plot from the input DataFrame, using line_1 for the x-axis and column_2 for the y-axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>pd.DataFrame</strong><strong>)</strong> (<em>df</em>)</p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong> (<em>file_name</em>)</p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong></p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

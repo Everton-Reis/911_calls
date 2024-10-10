@@ -1,46 +1,44 @@
-Hipótese 2
+Hypothesis 2
 ===========
 
-Motivação
+Motivation
 ---------
 
-| O desejo de entender em quais horários o número de ligações é maior parte da pressuposição de que o período noturno \
-  é notoriamente mais perigoso que os demais.
-| Muito desse senso comum se deve a baixa circulação de pedestres, além da recorrente defasagem de iluminação pública.
-| O estudo desses dados sob tal aspecto pode ser essencial no desenvolvimento de políticas governamentais e na \
- reorganização da rotina de patrulhas policias.
+| The desire to understand at what times the number of calls is highest stems from the assumption that the night period is notoriously more dangerous than others.
+| Much of this common sense is due to the low pedestrian traffic, along with the recurring inadequacy of public lighting.
+| The study of this data from such an aspect can be essential in the development of government policies and in the reorganization of police patrol routines.
 
 .. warning::
-    Os estudos aqui realizados são puramente superficiais, dado a falta de experiência 
-    com abordagens estatísticas e/ou probabilísticas. A análise foi feita com o objetivo de 
-    fomentar o interesse do leitor para com às hipóteses comentadas.
+    The studies conducted here are purely superficial, given the lack of experience with 
+    statistical and/or probabilistic approaches. The analysis was made with the objective 
+    of fostering the reader's interest in the discussed hypotheses.
 
-Considerações Gerais
+
+General Considerations
 --------------------
 
-| Em primeira instância, afim de agilizar a execução do código, foi realizada, a filtragem do arquivo.
-| Obtendo dessa forma somente as colunas: 'callDateTime', 'priority', 'description'.
+| Initially, in order to expedite the execution of the code, the file was filtered.
+| This way, only the columns 'callDateTime', 'priority', and 'description' were obtained.
 
 .. code-block:: python
 
     x.load_datafile(filepath)
 
-| Para investigar essa hipótese foi necessário primeiramente ter em mãos o horário, em horas, de cada ligação.
-| Pois o formato da coluna `callDataTime`, segue o seguinte padrão:
+| To investigate this hypothesis, it was necessary to first have the time, in hours, of each call.
+| The format of the callDateTime column follows this pattern:
 
-* ano/mês/dia hora:minutos:segundos
+* year/month/day hour:minutes
 
-| Assim sendo, foi implementada a função `get_hour`.
+| Therefore, the function `get_hour` was implemented.
 
 .. code-block:: python
 
     ax.get_hour(df)
 
-| Onde:
+| Where:
 
-:: 
-    Dado um DataFrame:
-
+::
+    Given a DataFrame:
 +-------------------------+
 | callDataTime            |
 +=========================+
@@ -50,7 +48,7 @@ Considerações Gerais
 +-------------------------+
 
 ::
-    Retorna:
+    Returns:
 
 +-------------------------+------+
 | callDataTime            | hour |
@@ -60,53 +58,52 @@ Considerações Gerais
 | 2021/01/04 17:34:00+00  | 17   |
 +-------------------------+------+
 
-Analise Principal
+Main Analysis
 -----------------
 
-| **O número de ligações no período noturno é maior.**
+| **The number of calls during the night period is higher.**
 
-| Depois, agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento "quantidade de ligações por hora".
+| Next, we grouped the calls by hour and counted the size of each grouping, which represents the "number of calls per hour."
 
 .. code-block:: python
 
     sub_df.groupby('hour').size()
 
-| Com todas as informações bastou plotar o gráfico
+| With all the information, it was just a matter of plotting the graph.
 
 .. code-block:: python
 
     plot_graf_bar(sub_groupby_1, 'calls', 'hour', 'calls_per_hour.png')
 
-Conclusões
+Conclusions
 -----------
 
-| Com base no gráfico abaixo, é possível perceber, que o horário de menor incidência de ligações ocorre das 09:00 às 09:59.
-| Analogamente, o horário de maiores incidências ocorre das 22:00 às 22:59.
-| Ademais, em um contexto geral é notório que às ligações aumenta gradativamente a partir das 09:00, atingindo seu ápice as 22:00 voltando gradativamente a diminuir.
+| Based on the graph below, it is evident that the time with the least incidence of calls occurs from 09:00 to 09:59.
+| Conversely, the time with the highest incidence occurs from 22:00 to 22:59.
+| Furthermore, in a general context, it is noticeable that calls gradually increase starting from 09:00, reaching their peak at 22:00, and then gradually decreasing.
 
 .. image:: ../../data/hipotese_2_images/calls_per_hour.png
    :width: 700px
    :height: 300px
    :align: center
 
-| Confirmando, dessa forma, a hipótese de que o maior número de ligações ocorre no período noturno. 
+| Thus confirming the hypothesis that the highest number of calls occurs during the night period.
 
-Adicionais:
+Additional:
 ^^^^^^^^^^^
 
-| **A gravidade das ligações é maior no período com mais ligações.**
+| **The severity of calls is greater during the period with the most calls.**
 
-| De maneira ampla, entender a gravidade das ligações é essencial ao distribuir a ação de rondas policias ao longo do dia.
-| Com todas as informações agrupadas bastou plotar o gráfico
-
+| Broadly, understanding the severity of calls is essential for distributing police patrols throughout the day.
+| With all the information grouped, it was just a matter of plotting the graph.
 .. code-block:: python
 
     visual.plot_graf_pie_by_hour(sub_df_2, "18", 'priority_per_hour.png', 'priority')
 
-conclusões
+Conclusions
 ^^^^^^^^^^
 
-| Com base nos gráficos abaixo, é possível perceber, que por mais que o horário mude, a diferença de gravidade por horário é, de certa forma, irregular.
+| Based on the graphs below, it is possible to observe that, although the time of day changes, the difference in severity by hour is somewhat irregular.
 
 .. image:: ../../data/hipotese_2_images/priority_per_hour_02.png
    :width: 500px
@@ -133,25 +130,25 @@ conclusões
    :height: 300px
    :align: center
 
-| Ainda assim, é possível notar um aumento de ligações de alta gravidade durante a madrugada, 02:00 às 02:59 e 05:00 às 05:59, além da presença maior de ligações de baixa e média gravidade.
-| Com base nisso, não é possível determinar se a hipótese foi refutada ou confirmada, sendo necessária uma investigação mais aprofundada.
+| Still, it is possible to notice an increase in high-severity calls during the early hours, from 02:00 to 02:59 and from 05:00 to 05:59, along with a greater presence of low- and medium-severity calls.
+| Based on this, it is not possible to determine whether the hypothesis has been refuted or confirmed, and further investigation is required.
 
-**Chamadas sem voz estão entre as principais ocorrências de ligações.**
+**Silent 911 calls are among the main occurrences.**
 
-| Podemos ainda citar a importância de se investigar os principais tipos de ocorrências ao longo do dia.
-| Portanto, depois agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento por descrição "quantidade de ligações por descrição".
+| We can also highlight the importance of investigating the main types of occurrences throughout the day.
+| Therefore, we grouped the calls by hour and counted the size of each grouping by description, or "number of calls per description."
 
 .. code-block:: python
 
     sub_df.groupby('description').size()
 
-| Selecionamos então as 15 ocorrências mais frequentes.
+| We then selected the 15 most frequent occurrences.
 
 .. code-block:: python
 
     ax.get_first_15_most_frequency(sub_df, sub_groupby_2)
 
-| Com base nos gráficos abaixo, é possível notar, que às mudanças de horário influenciam nas principais ocorrências.
+| Based on the graphs below, it is noticeable that the changes in time influence the most frequent occurrences.
 
 .. image:: ../../data/hipotese_2_images/description_per_hour_02.png
    :width: 500px
@@ -178,8 +175,10 @@ conclusões
    :height: 300px
    :align: center
 
-| Por fim, analisando algumas informações essenciais, por mais que 911/ no voice e desordem sejam sempre as mais frequentes
+| Finally, analyzing some essential information, although "911/no voice" and "disorder" are always the most frequent occurrences:
 
-1. Durante o período noturno, 18:00 às 18:59 e 22:00 às 22:59, o número de ocorrências por narcóticos é consideravelmente maior que nos demais
-2. Das 02:00 às 02:59 e 05:00 às 05:59, o número de assaltos se destaca.
-3. E das 09:00 às 09:59, acidentes de carro são a terceira ocorrência mais frequente.
+1. During the night period, from 18:00 to 18:59 and from 22:00 to 22:59, the number of narcotics-related incidents is considerably higher than during other times.
+2. From 02:00 to 02:59 and from 05:00 to 05:59, the number of assaults stands out.
+3. And from 09:00 to 09:59, car accidents are the third most frequent occurrence.
+
+| Confirming the hypothesis

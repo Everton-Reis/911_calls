@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hipótese 2 &mdash; 911_calls 1.0 documentation</title>
+  <title>Hypothesis 2 &mdash; 911_calls 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -44,13 +44,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Hipótese 2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#motivacao">Motivação</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#consideracoes-gerais">Considerações Gerais</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#analise-principal">Analise Principal</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#conclusoes">Conclusões</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#adicionais">Adicionais:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">conclusões</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hypothesis 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#general-considerations">General Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-analysis">Main Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusions">Conclusions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#additional">Additional:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Conclusions</a></li>
 </ul>
 </li>
 </ul>
@@ -74,7 +74,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Hipótese 2</li>
+      <li class="breadcrumb-item active">Hypothesis 2</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/hipotese_2.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -84,49 +84,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="hipotese-2">
-<h1>Hipótese 2<a class="headerlink" href="#hipotese-2" title="Link to this heading"></a></h1>
-<section id="motivacao">
-<h2>Motivação<a class="headerlink" href="#motivacao" title="Link to this heading"></a></h2>
+  <section id="hypothesis-2">
+<h1>Hypothesis 2<a class="headerlink" href="#hypothesis-2" title="Link to this heading"></a></h1>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line">O desejo de entender em quais horários o número de ligações é maior parte da pressuposição de que o período noturno é notoriamente mais perigoso que os demais.</div>
-<div class="line">Muito desse senso comum se deve a baixa circulação de pedestres, além da recorrente defasagem de iluminação pública.</div>
-<div class="line">O estudo desses dados sob tal aspecto pode ser essencial no desenvolvimento de políticas governamentais e na reorganização da rotina de patrulhas policias.</div>
+<div class="line">The desire to understand at what times the number of calls is highest stems from the assumption that the night period is notoriously more dangerous than others.</div>
+<div class="line">Much of this common sense is due to the low pedestrian traffic, along with the recurring inadequacy of public lighting.</div>
+<div class="line">The study of this data from such an aspect can be essential in the development of government policies and in the reorganization of police patrol routines.</div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Os estudos aqui realizados são puramente superficiais, dado a falta de experiência
-com abordagens estatísticas e/ou probabilísticas. A análise foi feita com o objetivo de
-fomentar o interesse do leitor para com às hipóteses comentadas.</p>
+<p>The studies conducted here are purely superficial, given the lack of experience with
+statistical and/or probabilistic approaches. The analysis was made with the objective
+of fostering the reader’s interest in the discussed hypotheses.</p>
 </div>
 </section>
-<section id="consideracoes-gerais">
-<h2>Considerações Gerais<a class="headerlink" href="#consideracoes-gerais" title="Link to this heading"></a></h2>
+<section id="general-considerations">
+<h2>General Considerations<a class="headerlink" href="#general-considerations" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line">Em primeira instância, afim de agilizar a execução do código, foi realizada, a filtragem do arquivo.</div>
-<div class="line">Obtendo dessa forma somente as colunas: ‘callDateTime’, ‘priority’, ‘description’.</div>
+<div class="line">Initially, in order to expedite the execution of the code, the file was filtered.</div>
+<div class="line">This way, only the columns ‘callDateTime’, ‘priority’, and ‘description’ were obtained.</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">load_datafile</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">Para investigar essa hipótese foi necessário primeiramente ter em mãos o horário, em horas, de cada ligação.</div>
-<div class="line">Pois o formato da coluna <cite>callDataTime</cite>, segue o seguinte padrão:</div>
+<div class="line">To investigate this hypothesis, it was necessary to first have the time, in hours, of each call.</div>
+<div class="line">The format of the callDateTime column follows this pattern:</div>
 </div>
 <ul class="simple">
-<li><p>ano/mês/dia hora:minutos:segundos</p></li>
+<li><p>year/month/day hour:minutes</p></li>
 </ul>
 <div class="line-block">
-<div class="line">Assim sendo, foi implementada a função <cite>get_hour</cite>.</div>
+<div class="line">Therefore, the function <cite>get_hour</cite> was implemented.</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">get_hour</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">Onde:</div>
+<div class="line">Where:</div>
 </div>
 <dl class="simple">
-<dt>::</dt><dd><p>Dado um DataFrame:</p>
+<dt>::</dt><dd><p>Given a DataFrame:</p>
 </dd>
 </dl>
 <table class="docutils align-default">
@@ -142,7 +142,7 @@ fomentar o interesse do leitor para com às hipóteses comentadas.</p>
 </tbody>
 </table>
 <dl class="simple">
-<dt>::</dt><dd><p>Retorna:</p>
+<dt>::</dt><dd><p>Returns:</p>
 </dd>
 </dl>
 <table class="docutils align-default">
@@ -161,53 +161,53 @@ fomentar o interesse do leitor para com às hipóteses comentadas.</p>
 </tbody>
 </table>
 </section>
-<section id="analise-principal">
-<h2>Analise Principal<a class="headerlink" href="#analise-principal" title="Link to this heading"></a></h2>
+<section id="main-analysis">
+<h2>Main Analysis<a class="headerlink" href="#main-analysis" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line"><strong>O número de ligações no período noturno é maior.</strong></div>
+<div class="line"><strong>The number of calls during the night period is higher.</strong></div>
 </div>
 <div class="line-block">
-<div class="line">Depois, agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento “quantidade de ligações por hora”.</div>
+<div class="line">Next, we grouped the calls by hour and counted the size of each grouping, which represents the “number of calls per hour.”</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">Com todas as informações bastou plotar o gráfico</div>
+<div class="line">With all the information, it was just a matter of plotting the graph.</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_graf_bar</span><span class="p">(</span><span class="n">sub_groupby_1</span><span class="p">,</span> <span class="s1">&#39;calls&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;calls_per_hour.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="conclusoes">
-<h2>Conclusões<a class="headerlink" href="#conclusoes" title="Link to this heading"></a></h2>
+<section id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line">Com base no gráfico abaixo, é possível perceber, que o horário de menor incidência de ligações ocorre das 09:00 às 09:59.</div>
-<div class="line">Analogamente, o horário de maiores incidências ocorre das 22:00 às 22:59.</div>
-<div class="line">Ademais, em um contexto geral é notório que às ligações aumenta gradativamente a partir das 09:00, atingindo seu ápice as 22:00 voltando gradativamente a diminuir.</div>
+<div class="line">Based on the graph below, it is evident that the time with the least incidence of calls occurs from 09:00 to 09:59.</div>
+<div class="line">Conversely, the time with the highest incidence occurs from 22:00 to 22:59.</div>
+<div class="line">Furthermore, in a general context, it is noticeable that calls gradually increase starting from 09:00, reaching their peak at 22:00, and then gradually decreasing.</div>
 </div>
 <a class="reference internal image-reference" href="_images/calls_per_hour.png"><img alt="_images/calls_per_hour.png" class="align-center" src="_images/calls_per_hour.png" style="width: 700px; height: 300px;" />
 </a>
 <div class="line-block">
-<div class="line">Confirmando, dessa forma, a hipótese de que o maior número de ligações ocorre no período noturno.</div>
+<div class="line">Thus confirming the hypothesis that the highest number of calls occurs during the night period.</div>
 </div>
-<section id="adicionais">
-<h3>Adicionais:<a class="headerlink" href="#adicionais" title="Link to this heading"></a></h3>
+<section id="additional">
+<h3>Additional:<a class="headerlink" href="#additional" title="Link to this heading"></a></h3>
 <div class="line-block">
-<div class="line"><strong>A gravidade das ligações é maior no período com mais ligações.</strong></div>
+<div class="line"><strong>The severity of calls is greater during the period with the most calls.</strong></div>
 </div>
 <div class="line-block">
-<div class="line">De maneira ampla, entender a gravidade das ligações é essencial ao distribuir a ação de rondas policias ao longo do dia.</div>
-<div class="line">Com todas as informações agrupadas bastou plotar o gráfico</div>
+<div class="line">Broadly, understanding the severity of calls is essential for distributing police patrols throughout the day.</div>
+<div class="line">With all the information grouped, it was just a matter of plotting the graph.</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">visual</span><span class="o">.</span><span class="n">plot_graf_pie_by_hour</span><span class="p">(</span><span class="n">sub_df_2</span><span class="p">,</span> <span class="s2">&quot;18&quot;</span><span class="p">,</span> <span class="s1">&#39;priority_per_hour.png&#39;</span><span class="p">,</span> <span class="s1">&#39;priority&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="id1">
-<h3>conclusões<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>Conclusions<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <div class="line-block">
-<div class="line">Com base nos gráficos abaixo, é possível perceber, que por mais que o horário mude, a diferença de gravidade por horário é, de certa forma, irregular.</div>
+<div class="line">Based on the graphs below, it is possible to observe that, although the time of day changes, the difference in severity by hour is somewhat irregular.</div>
 </div>
 <a class="reference internal image-reference" href="_images/priority_per_hour_02.png"><img alt="_images/priority_per_hour_02.png" class="align-center" src="_images/priority_per_hour_02.png" style="width: 500px; height: 300px;" />
 </a>
@@ -220,25 +220,25 @@ fomentar o interesse do leitor para com às hipóteses comentadas.</p>
 <a class="reference internal image-reference" href="_images/priority_per_hour_22.png"><img alt="_images/priority_per_hour_22.png" class="align-center" src="_images/priority_per_hour_22.png" style="width: 500px; height: 300px;" />
 </a>
 <div class="line-block">
-<div class="line">Ainda assim, é possível notar um aumento de ligações de alta gravidade durante a madrugada, 02:00 às 02:59 e 05:00 às 05:59, além da presença maior de ligações de baixa e média gravidade.</div>
-<div class="line">Com base nisso, não é possível determinar se a hipótese foi refutada ou confirmada, sendo necessária uma investigação mais aprofundada.</div>
+<div class="line">Still, it is possible to notice an increase in high-severity calls during the early hours, from 02:00 to 02:59 and from 05:00 to 05:59, along with a greater presence of low- and medium-severity calls.</div>
+<div class="line">Based on this, it is not possible to determine whether the hypothesis has been refuted or confirmed, and further investigation is required.</div>
 </div>
-<p><strong>Chamadas sem voz estão entre as principais ocorrências de ligações.</strong></p>
+<p><strong>Silent 911 calls are among the main occurrences.</strong></p>
 <div class="line-block">
-<div class="line">Podemos ainda citar a importância de se investigar os principais tipos de ocorrências ao longo do dia.</div>
-<div class="line">Portanto, depois agrupamos as ligações por horários e contabilizamos o tamanho de cada agrupamento por descrição “quantidade de ligações por descrição”.</div>
+<div class="line">We can also highlight the importance of investigating the main types of occurrences throughout the day.</div>
+<div class="line">Therefore, we grouped the calls by hour and counted the size of each grouping by description, or “number of calls per description.”</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">Selecionamos então as 15 ocorrências mais frequentes.</div>
+<div class="line">We then selected the 15 most frequent occurrences.</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">get_first_15_most_frequency</span><span class="p">(</span><span class="n">sub_df</span><span class="p">,</span> <span class="n">sub_groupby_2</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">Com base nos gráficos abaixo, é possível notar, que às mudanças de horário influenciam nas principais ocorrências.</div>
+<div class="line">Based on the graphs below, it is noticeable that the changes in time influence the most frequent occurrences.</div>
 </div>
 <a class="reference internal image-reference" href="_images/description_per_hour_02.png"><img alt="_images/description_per_hour_02.png" class="align-center" src="_images/description_per_hour_02.png" style="width: 500px; height: 300px;" />
 </a>
@@ -251,13 +251,16 @@ fomentar o interesse do leitor para com às hipóteses comentadas.</p>
 <a class="reference internal image-reference" href="_images/description_per_hour_22.png"><img alt="_images/description_per_hour_22.png" class="align-center" src="_images/description_per_hour_22.png" style="width: 500px; height: 300px;" />
 </a>
 <div class="line-block">
-<div class="line">Por fim, analisando algumas informações essenciais, por mais que 911/ no voice e desordem sejam sempre as mais frequentes</div>
+<div class="line">Finally, analyzing some essential information, although “911/no voice” and “disorder” are always the most frequent occurrences:</div>
 </div>
 <ol class="arabic simple">
-<li><p>Durante o período noturno, 18:00 às 18:59 e 22:00 às 22:59, o número de ocorrências por narcóticos é consideravelmente maior que nos demais</p></li>
-<li><p>Das 02:00 às 02:59 e 05:00 às 05:59, o número de assaltos se destaca.</p></li>
-<li><p>E das 09:00 às 09:59, acidentes de carro são a terceira ocorrência mais frequente.</p></li>
+<li><p>During the night period, from 18:00 to 18:59 and from 22:00 to 22:59, the number of narcotics-related incidents is considerably higher than during other times.</p></li>
+<li><p>From 02:00 to 02:59 and from 05:00 to 05:59, the number of assaults stands out.</p></li>
+<li><p>And from 09:00 to 09:59, car accidents are the third most frequent occurrence.</p></li>
 </ol>
+<div class="line-block">
+<div class="line">Confirming the hypothesis</div>
+</div>
 </section>
 </section>
 </section>
