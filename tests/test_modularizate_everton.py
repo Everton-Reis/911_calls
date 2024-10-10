@@ -1,7 +1,10 @@
 import unittest
 import pandas as pd
 from unittest.mock import patch
-from modularizate_everton import carregar_e_modificar_dados, calcular_pontuacao, pesos_normalizados, gerar_graficos
+import sys
+import os
+sys.path.append(os.path.abspath('..'))
+import src.hipotese_1_Everton.modularizate_everton as me
 
 class TestDataProcessing(unittest.TestCase):
 
@@ -14,7 +17,7 @@ class TestDataProcessing(unittest.TestCase):
         })
 
         # Caso 1: Arquivo existe e colunas estão corretas
-        df = carregar_e_modificar_dados('911.csv', ['Local', 'Grau'])
+        df = me.carregar_e_modificar_dados('911_clean.csv', ['Local', 'Grau'])
         self.assertIsNotNone(df)
         self.assertEqual(len(df), 2)  # Agora temos 2 entradas
         self.assertEqual(df.iloc[0]['Local'], 'Local1')
@@ -26,7 +29,7 @@ class TestDataProcessing(unittest.TestCase):
 
         # Caso 2: Simular erro de arquivo não encontrado
         mock_clean.side_effect = FileNotFoundError  # Simula que o arquivo não foi encontrado
-        df = carregar_e_modificar_dados('inexistente.csv', ['Local', 'Grau'])
+        df = me.carregar_e_modificar_dados('inexistente.csv', ['Local', 'Grau'])
         self.assertIsNone(df)
 
     def test_calcular_pontuacao(self):
@@ -41,7 +44,7 @@ class TestDataProcessing(unittest.TestCase):
             'High': 2
         }
 
-        resultado = calcular_pontuacao(df, peso_mapeamento)
+        resultado = me.calcular_pontuacao(df, peso_mapeamento)
         self.assertIsNotNone(resultado)
         self.assertEqual(resultado.shape[0], 2)  # Deve retornar 2 locais / Uma verificação se o tamanho corresponde
 
@@ -74,7 +77,7 @@ class TestDataProcessing(unittest.TestCase):
         }
 
         # Executando a função
-        resultado = pesos_normalizados(dados, pesos)
+        resultado = me.pesos_normalizados(dados, pesos)
         self.assertIsNotNone(resultado)
 
         # Valores esperados, calculados previamente com base nos dados e pesos

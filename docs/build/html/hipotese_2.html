@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hypothesis 2: Some types of incidents occur more frequently at night or during specific hours. &mdash; 911_calls 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hypothesis 3: Distribution of Calls by District in Baltimore" href="hipotese_3.html" />
+    <link rel="prev" title="Hypothesis 1: Is the most dangerous district the one with the highest number of occurrences?" href="hipotese_1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            911_calls
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hipotese_1.html">Hypothesis 1: Is the most dangerous district the one with the highest number of occurrences?</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hypothesis 2: Some types of incidents occur more frequently at night or during specific hours.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#general-considerations">General Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-analysis">Main Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusions">Conclusions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#additional">Additional:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Conclusions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hipotese_3.html">Hypothesis 3: Distribution of Calls by District in Baltimore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limpeza_main.html">limpeza_main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules2.html">test</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">911_calls</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hypothesis 2: Some types of incidents occur more frequently at night or during specific hours.</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/hipotese_2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hypothesis-2-some-types-of-incidents-occur-more-frequently-at-night-or-during-specific-hours">
+<h1>Hypothesis 2: Some types of incidents occur more frequently at night or during specific hours.<a class="headerlink" href="#hypothesis-2-some-types-of-incidents-occur-more-frequently-at-night-or-during-specific-hours" title="Link to this heading"></a></h1>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">The desire to understand at what times the number of calls is highest stems from the assumption that the night period is notoriously more dangerous than others.</div>
+<div class="line">Much of this common sense is due to the low pedestrian traffic, along with the recurring inadequacy of public lighting.</div>
+<div class="line">The study of this data from such an aspect can be essential in the development of government policies and in the reorganization of police patrol routines.</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The studies conducted here are purely superficial, given the lack of experience with
+statistical and/or probabilistic approaches. The analysis was made with the objective
+of fostering the reader’s interest in the discussed hypotheses.</p>
+</div>
+</section>
+<section id="general-considerations">
+<h2>General Considerations<a class="headerlink" href="#general-considerations" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Initially, in order to expedite the execution of the code, the file was filtered.</div>
+<div class="line">This way, only the columns ‘callDateTime’, ‘priority’, and ‘description’ were obtained.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">load_datafile</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">To investigate this hypothesis, it was necessary to first have the time, in hours, of each call.</div>
+<div class="line">The format of the callDateTime column follows this pattern:</div>
+</div>
+<ul class="simple">
+<li><p>year/month/day hour:minutes</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Therefore, the function <cite>get_hour</cite> was implemented.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">get_hour</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Where:</div>
+</div>
+<dl class="simple">
+<dt>::</dt><dd><p>Given a DataFrame:</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>callDataTime</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2021/01/04 16:33:00+00</p></td>
+</tr>
+<tr class="row-odd"><td><p>2021/01/04 17:34:00+00</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt>::</dt><dd><p>Returns:</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>callDataTime</p></th>
+<th class="head"><p>hour</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2021/01/04 16:33:00+00</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>2021/01/04 17:34:00+00</p></td>
+<td><p>17</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="main-analysis">
+<h2>Main Analysis<a class="headerlink" href="#main-analysis" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line"><strong>The number of calls during the night period is higher.</strong></div>
+</div>
+<div class="line-block">
+<div class="line">Next, we grouped the calls by hour and counted the size of each grouping, which represents the “number of calls per hour.”</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">With all the information, it was just a matter of plotting the graph.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_graf_bar</span><span class="p">(</span><span class="n">sub_groupby_1</span><span class="p">,</span> <span class="s1">&#39;calls&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="s1">&#39;calls_per_hour.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Based on the graph below, it is evident that the time with the least incidence of calls occurs from 09:00 to 09:59.</div>
+<div class="line">Conversely, the time with the highest incidence occurs from 22:00 to 22:59.</div>
+<div class="line">Furthermore, in a general context, it is noticeable that calls gradually increase starting from 09:00, reaching their peak at 22:00, and then gradually decreasing.</div>
+</div>
+<a class="reference internal image-reference" href="_images/calls_per_hour.png"><img alt="_images/calls_per_hour.png" class="align-center" src="_images/calls_per_hour.png" style="width: 700px; height: 300px;" />
+</a>
+<div class="line-block">
+<div class="line">Thus confirming the hypothesis that the highest number of calls occurs during the night period.</div>
+</div>
+<section id="additional">
+<h3>Additional:<a class="headerlink" href="#additional" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line"><strong>The severity of calls is greater during the period with the most calls.</strong></div>
+</div>
+<div class="line-block">
+<div class="line">Broadly, understanding the severity of calls is essential for distributing police patrols throughout the day.</div>
+<div class="line">With all the information grouped, it was just a matter of plotting the graph.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">visual</span><span class="o">.</span><span class="n">plot_graf_pie_by_hour</span><span class="p">(</span><span class="n">sub_df_2</span><span class="p">,</span> <span class="s2">&quot;18&quot;</span><span class="p">,</span> <span class="s1">&#39;priority_per_hour.png&#39;</span><span class="p">,</span> <span class="s1">&#39;priority&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Conclusions<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line">Based on the graphs below, it is possible to observe that, although the time of day changes, the difference in severity by hour is somewhat irregular.</div>
+</div>
+<a class="reference internal image-reference" href="_images/priority_per_hour_02.png"><img alt="_images/priority_per_hour_02.png" class="align-center" src="_images/priority_per_hour_02.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/priority_per_hour_05.png"><img alt="_images/priority_per_hour_05.png" class="align-center" src="_images/priority_per_hour_05.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/priority_per_hour_09.png"><img alt="_images/priority_per_hour_09.png" class="align-center" src="_images/priority_per_hour_09.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/priority_per_hour_18.png"><img alt="_images/priority_per_hour_18.png" class="align-center" src="_images/priority_per_hour_18.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/priority_per_hour_22.png"><img alt="_images/priority_per_hour_22.png" class="align-center" src="_images/priority_per_hour_22.png" style="width: 500px; height: 300px;" />
+</a>
+<div class="line-block">
+<div class="line">Still, it is possible to notice an increase in high-severity calls during the early hours, from 02:00 to 02:59 and from 05:00 to 05:59, along with a greater presence of low- and medium-severity calls.</div>
+<div class="line">Based on this, it is not possible to determine whether the hypothesis has been refuted or confirmed, and further investigation is required.</div>
+</div>
+<p><strong>Silent 911 calls are among the main occurrences.</strong></p>
+<div class="line-block">
+<div class="line">We can also highlight the importance of investigating the main types of occurrences throughout the day.</div>
+<div class="line">Therefore, we grouped the calls by hour and counted the size of each grouping by description, or “number of calls per description.”</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">We then selected the 15 most frequent occurrences.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">get_first_15_most_frequency</span><span class="p">(</span><span class="n">sub_df</span><span class="p">,</span> <span class="n">sub_groupby_2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Based on the graphs below, it is noticeable that the changes in time influence the most frequent occurrences.</div>
+</div>
+<a class="reference internal image-reference" href="_images/description_per_hour_02.png"><img alt="_images/description_per_hour_02.png" class="align-center" src="_images/description_per_hour_02.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/description_per_hour_05.png"><img alt="_images/description_per_hour_05.png" class="align-center" src="_images/description_per_hour_05.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/description_per_hour_09.png"><img alt="_images/description_per_hour_09.png" class="align-center" src="_images/description_per_hour_09.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/description_per_hour_18.png"><img alt="_images/description_per_hour_18.png" class="align-center" src="_images/description_per_hour_18.png" style="width: 500px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/description_per_hour_22.png"><img alt="_images/description_per_hour_22.png" class="align-center" src="_images/description_per_hour_22.png" style="width: 500px; height: 300px;" />
+</a>
+<div class="line-block">
+<div class="line">Finally, analyzing some essential information, although “911/no voice” and “disorder” are always the most frequent occurrences:</div>
+</div>
+<ol class="arabic simple">
+<li><p>During the night period, from 18:00 to 18:59 and from 22:00 to 22:59, the number of narcotics-related incidents is considerably higher than during other times.</p></li>
+<li><p>From 02:00 to 02:59 and from 05:00 to 05:59, the number of assaults stands out.</p></li>
+<li><p>And from 09:00 to 09:59, car accidents are the third most frequent occurrence.</p></li>
+</ol>
+<div class="line-block">
+<div class="line">Confirming the hypothesis</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hipotese_1.html" class="btn btn-neutral float-left" title="Hypothesis 1: Is the most dangerous district the one with the highest number of occurrences?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hipotese_3.html" class="btn btn-neutral float-right" title="Hypothesis 3: Distribution of Calls by District in Baltimore" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Stephany Casali Oliveira, Everton Costa Reis, Eliane da Silva Moreira.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

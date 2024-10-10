@@ -1,0 +1,7 @@
+main\_stephany module
+=====================
+
+.. automodule:: main_stephany
+   :members:
+   :undoc-members:
+   :show-inheritance:
