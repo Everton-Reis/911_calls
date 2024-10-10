@@ -1,7 +1,11 @@
 import unittest
 import pandas as pd
 from unittest.mock import patch, mock_open
-from auxiliary import load_data, save_top_descriptions, remove_lines
+import sys
+import os
+sys.path.append(os.path.abspath('..'))
+from src.hipotese_3_Eliane.auxiliary_eliane import load_data, save_top_descriptions, remove_lines
+
 
 class TestDataProcessing(unittest.TestCase):
     """
@@ -28,7 +32,6 @@ class TestDataProcessing(unittest.TestCase):
 
         # Ensure the DataFrame has no null values
         self.assertFalse(df.isnull().values.any())
-
 
     @patch("pandas.DataFrame.to_csv")
     def test_save_top_descriptions(self, mock_to_csv):
@@ -100,6 +103,56 @@ class TestDataProcessing(unittest.TestCase):
 
         # Checks if the to_csv method was called once with the correct file name
         mock_to_csv.assert_called_once_with('Cleaned_Call_Distribution.csv', index=False)
+
+
+    # The following cases deal with possible errors.
+
+    @patch("pandas.read_csv")
+    def test_load_data_with_empty_file(self, mock_read_csv):
+        """
+        Test load_data with an empty file.
+        """
+        mock_read_csv.return_value = pd.DataFrame(columns=['recordId', 'district', 'description'])
+        df = load_data("empty_file.csv")
+        self.assertTrue(df.empty)
+
+
+    @patch("pandas.DataFrame.to_csv")
+    def test_save_top_descriptions_empty_df(self, mock_to_csv):
+        """
+        Test save_top_descriptions with an empty DataFrame.
+        """
+        empty_df = pd.DataFrame(columns=['description'])  # Empty DataFramer
+        with self.assertRaises(ValueError): 
+            save_top_descriptions(empty_df)
+
+
+    @patch("pandas.read_csv")
+    @patch("pandas.DataFrame.to_csv")
+    def test_remove_lines_no_district_column(self, mock_to_csv, mock_read_csv):
+        """
+        Test remove_lines when 'district' column is missing.
+        """
+        mock_df = pd.DataFrame({'other_column': ['NE', 'ND', 'SW']})  # No 'district' column
+        mock_read_csv.return_value = mock_df
+
+        with self.assertRaises(KeyError):
+            remove_lines("file_without_district.csv")
+
+
+    @patch("pandas.read_csv")
+    def test_remove_lines_with_no_removal(self, mock_read_csv):
+        """
+        Test remove_lines when there are no districts to remove.
+        """
+        mock_df = pd.DataFrame({
+            'district': ['NE', 'ND', 'SW', 'SE'],
+            'call_count': [100, 150, 200, 250]
+        })
+
+        mock_read_csv.return_value = mock_df
+        result_df = remove_lines("file.csv")
+        pd.testing.assert_frame_equal(result_df, mock_df)  
 
 
 if __name__ == '__main__':

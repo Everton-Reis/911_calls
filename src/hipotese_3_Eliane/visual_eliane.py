@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import geopandas as gpd
-from calls_by_category import call_counter, load_data, distribution_in_percentage
+from calls_eliane import call_counter, load_data, distribution_in_percentage
 
 def line_chart_district_calls(df):
     """
@@ -77,7 +77,7 @@ def map_generator(filepath3):
     df = pd.read_csv(filepath3)
 
     # Load the map data (Baltimore police districts shapefile)
-    map_data = gpd.read_file('Police_Districts_2023.zip')
+    map_data = gpd.read_file('data/Police_Districts_2023.zip')
 
     # Sum call counts by district and sort the map data 
     call_sums = df.groupby('district')['call_count'].sum()
