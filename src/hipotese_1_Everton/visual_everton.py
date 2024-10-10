@@ -1,94 +1,85 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-import matplotlib.pyplot as plt
-import pandas as pd
-
-def bar1_plot_df(df, linha_1, coluna_2_1, coluna_2_2, titulo, nome_arquivo='grafico_barra1.png'):
+def bar1_plot_df(df, line_1, column_2_1, column_2_2, title, file_name='bar_chart1.png'):
     """
-    Cria um gráfico de barra a partir do DataFrame de entrada, tendo como eixo x a linha_1 e y a coluna_2_1 e/ou coluna_2_2.
+    Creates a bar chart from the input DataFrame, using line_1 for the x-axis and column_2_1 and/or column_2_2 for the y-axis.
     
-    Parâmetros
+    Parameters
     ----------
-    df (pd.DataFrame): O DataFrame com os dados analisados.
-    linha_1 (str): Uma das colunas do DataFrame (Contudo, vai representar o eixo x).
-    coluna_2_1 (str): Uma das colunas do DataFrame.
-    coluna_2_2 (str): Uma das colunas do DataFrame.
-    titulo (str): Título para o gráfico de barra.
-    nome_arquivo (str): Nome do arquivo onde o gráfico será salvo.
+    df (pd.DataFrame): The DataFrame containing the analyzed data.
+    line_1 (str): One of the columns of the DataFrame (this will represent the x-axis).
+    column_2_1 (str): One of the columns of the DataFrame.
+    column_2_2 (str): One of the columns of the DataFrame.
+    title (str): Title for the bar chart.
+    file_name (str): Name of the file where the chart will be saved.
     """
-    if linha_1 not in df.columns or coluna_2_1 not in df.columns or coluna_2_2 not in df.columns:
-        raise ValueError("Não há colunas com os nomes inseridos no DataFrame.")
+    if line_1 not in df.columns or column_2_1 not in df.columns or column_2_2 not in df.columns:
+        raise ValueError("There are no columns with the specified names in the DataFrame.")
 
-    # Criar o gráfico de barra com cores roxo e azul
-    ax = df.plot.bar(x=linha_1, y=[coluna_2_1, coluna_2_2], title=titulo, color=['purple', 'blue'])
+    # Create the bar chart with purple and blue colors
+    ax = df.plot.bar(x=line_1, y=[column_2_1, column_2_2], title=title, color=['purple', 'blue'])
     
-    # Configurações adicionais
-    plt.xlabel(linha_1)  # Rótulo do eixo X
-    plt.ylabel('Valores')  # Rótulo do eixo Y
-    plt.xticks(rotation=45)  # Rotaciona os rótulos do eixo X
-    plt.grid(axis='y')  # Mostra a grade apenas no eixo Y
-    plt.tight_layout()  # Ajusta o layout para evitar sobreposição
+    # Additional settings
+    plt.xlabel(line_1)  # X-axis label
+    plt.ylabel('Values')  # Y-axis label
+    plt.xticks(rotation=45)  # Rotate the x-axis labels
+    plt.grid(axis='y')  # Show the grid only on the y-axis
+    plt.tight_layout()  # Adjust layout to avoid overlap
 
-    # Salvar e fechar o gráfico em um arquivo
-    plt.savefig(nome_arquivo)
+    # Save and close the chart to a file
+    plt.savefig(file_name)
     plt.close()  
 
-import matplotlib.pyplot as plt
-import pandas as pd
-
-def bar2_plot_df(df, linha_1, coluna_2, titulo, nome_arquivo='grafico_barra2.png'):
+def bar2_plot_df(df, line_1, column_2, title, file_name='bar_chart2.png'):
     """
-    Cria um gráfico de barra a partir do DataFrame de entrada, tendo como eixo x a linha_1 e y a coluna_2.
+    Creates a bar chart from the input DataFrame, using line_1 for the x-axis and column_2 for the y-axis.
     
-    Parâmetros
+    Parameters
     ----------
-    df (pd.DataFrame): O DataFrame com os dados analisados.
-    linha_1 (str): Uma das colunas do DataFrame (Contudo, vai representar o eixo x).
-    coluna_2 (str): Uma das colunas do DataFrame.
-    titulo (str): Título para o gráfico de barra.
-    nome_arquivo (str): Nome do arquivo onde o gráfico será salvo.
+    df (pd.DataFrame): The DataFrame containing the analyzed data.
+    line_1 (str): One of the columns of the DataFrame (this will represent the x-axis).
+    column_2 (str): One of the columns of the DataFrame.
+    title (str): Title for the bar chart.
+    file_name (str): Name of the file where the chart will be saved.
     """
-    if linha_1 not in df.columns or coluna_2 not in df.columns:
-        raise ValueError("Não há colunas com os nomes inseridos no DataFrame.")
+    if line_1 not in df.columns or column_2 not in df.columns:
+        raise ValueError("There are no columns with the specified names in the DataFrame.")
 
-    # Criar o gráfico de barra 
-    ax = df.plot.bar(x=linha_1, y=coluna_2, color='purple', title=titulo)
+    # Create the bar chart
+    ax = df.plot.bar(x=line_1, y=column_2, color='purple', title=title)
     
-    # Configurações adicionais
-    plt.xlabel(linha_1)  # Rótulo do eixo X
-    plt.ylabel('Valores')  # Rótulo do eixo Y
-    plt.xticks(rotation=45)  # Rotaciona os rótulos do eixo X
-    plt.grid(axis='y')  # Mostra a grade apenas no eixo Y
-    plt.tight_layout()  # Ajusta o layout para evitar sobreposição
+    # Additional settings
+    plt.xlabel(line_1)  # X-axis label
+    plt.ylabel('Values')  # Y-axis label
+    plt.xticks(rotation=45)  # Rotate the x-axis labels
+    plt.grid(axis='y')  # Show the grid only on the y-axis
+    plt.tight_layout()  # Adjust layout to avoid overlap
 
-    # Salvar e fechar o gráfico em um arquivo
-    plt.savefig(nome_arquivo)
+    # Save and close the chart to a file
+    plt.savefig(file_name)
     plt.close()  
 
-import pandas as pd
-import matplotlib.pyplot as plt
-
-def scatter_plot_df(df, linha_1, coluna_2, titulo, nome_arquivo='grafico_scatter.png'):
+def scatter_plot_df(df, line_1, column_2, title, file_name='scatter_chart.png'):
     """
-    Cria um gráfico de scatter (dispersão) a partir do DataFrame de entrada, tendo como eixo x a linha_1 e y a coluna_2.
+    Creates a scatter plot from the input DataFrame, using line_1 for the x-axis and column_2 for the y-axis.
     
-    Parâmetros
+    Parameters
     ----------
-    df (pd.DataFrame): O DataFrame com os dados analisados.
-    linha_1 (str): Uma das colunas do DataFrame (Contudo, vai representar o eixo x).
-    coluna_2 (str): Uma das colunas do DataFrame.
-    titulo (str): Título para o gráfico de scatter.
-    nome_arquivo (str): Nome do arquivo onde o gráfico será salvo.
+    df (pd.DataFrame): The DataFrame containing the analyzed data.
+    line_1 (str): One of the columns of the DataFrame (this will represent the x-axis).
+    column_2 (str): One of the columns of the DataFrame.
+    title (str): Title for the scatter plot.
+    file_name (str): Name of the file where the chart will be saved.
     """
-    if linha_1 not in df.columns or coluna_2 not in df.columns:
-        raise ValueError("Não há colunas com os nomes inseridos no DataFrame.")
+    if line_1 not in df.columns or column_2 not in df.columns:
+        raise ValueError("There are no columns with the specified names in the DataFrame.")
 
-    # Criar o gráfico de scatter
-    ax = df.plot.scatter(x=linha_1, y=coluna_2, color='purple', title=titulo)
+    # Create the scatter plot
+    ax = df.plot.scatter(x=line_1, y=column_2, color='purple', title=title)
     plt.grid()
 
-    # Salvar e fechar o gráfico em um arquivo
-    plt.savefig(nome_arquivo)
-    plt.close() 
+    # Save and close the chart to a file
+    plt.savefig(file_name)
+    plt.close()  
 

@@ -3,50 +3,51 @@ import auxiliary_everton as lp
 
 columns = ['recordId', 'callDateTime', 'priority', 'district', 'description', 'PoliceDistrict', 'ESRI_OID']
 
-def clean(name, columns):
+def save_clean(archive: str) -> None:
     """
-    Limpa os dados de um arquivo CSV, mantendo apenas as colunas úteis e limpando dados irregulares.
-
-    Parameters
-    ----------
-    name : str
-        O nome do arquivo CSV a ser lido. O arquivo deve estar no formato tabulado (diferente do comum que é a virgula).
-
-    columns : list
-        Lista de colunas que continuam no DataFrame.
-
-    Returns
-    -------
-    pd.DataFrame
-        Um DataFrame contendo apenas as colunas especificadas, com dados irregulares tratados.
-    """
-    # Nome do arquivo
-    filepath = name
-    # Lê o arquivo
-    df = pd.read_csv(filepath, sep="\t")
-    # Seleciona as colunas úteis
-    df = lp.get_columns(df, columns)
-    # Limpa colunas com dados irregulares
-    df = lp.clean_DataFrame(df)
-
-    return df
-
-def save_clean(archive):
-    """
-    Salva um arquivo CSV limpo contendo apenas as colunas relevantes para análise.
+    Saves a cleaned CSV file containing only the relevant columns for analysis.
 
     Parameters
     ----------
     archive : str
-        O nome do arquivo CSV a ser limpo.
+        The name of the CSV file to be cleaned.
     
     Returns
     -------
     None
-        A função salva o DataFrame limpo em um arquivo chamado '911_clean.csv'.
+        The function saves the cleaned DataFrame to a file named '911_clean.csv'.
     """
     try:
-        df_clean = clean(archive, columns)  # Criação do arquivo com apenas as colunas que todos irão trabalhar
+        df_clean = clean(archive, columns)  # Creates a file with only the columns that everyone will work on
         df_clean.to_csv('911_clean.csv', index=False)
     except Exception as e:
-        print(f"Erro ao salvar o arquivo '{archive}': {e}")
+        print(f"Error saving the file '{archive}': {e}")
+
+def clean(name: str, columns: list) -> pd.DataFrame:
+    """
+    Cleans the data from a CSV file, keeping only useful columns and cleaning irregular data.
+
+    Parameters
+    ----------
+    name : str
+        The name of the CSV file to be read. The file must be in tab-delimited format (different from the common comma format).
+
+    columns : list
+        List of columns that will remain in the DataFrame.
+
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame containing only the specified columns, with irregular data handled.
+    """
+    # File name
+    filepath = name
+    # Read the file
+    df = pd.read_csv(filepath, sep="\t")
+    # Select useful columns
+    df = lp.get_columns(df, columns)
+    # Clean columns with irregular data
+    df = lp.clean_DataFrame(df)
+
+    return df
+

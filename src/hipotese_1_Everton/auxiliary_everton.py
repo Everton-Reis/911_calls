@@ -1,83 +1,83 @@
 import pandas as pd
 
-def get_columns(file, columns):
+def get_columns(file: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     """
-    Retorna um sub_file contendo apenas as colunas desejadas.
+    Returns a sub_file containing only the desired columns.
 
     Parameters
     ----------
     file : pandas.DataFrame
-        DataFrame do qual o sub_file com as colunas desejadas será extraído.
+        DataFrame from which the sub_file with the desired columns will be extracted.
     
     columns : list
-        Lista das colunas desejadas no subfile.
+        List of desired columns in the subfile.
 
     Returns
     -------
     pandas.DataFrame
-        DataFrame contendo apenas as colunas especificadas.
+        DataFrame containing only the specified columns.
     """
     try:
-        file = file[columns]  # Trabalha diretamente na referência ao DataFrame original
+        file = file[columns]  # Works directly on the reference to the original DataFrame
         return file
     except KeyError as e:
-        colunas_faltando = list(set(columns) - set(file.columns))
-        print(f"As colunas {colunas_faltando} não estão presentes no DataFrame.")
-        return file  # Retorna o DataFrame original em caso de erro
+        missing_columns = list(set(columns) - set(file.columns))
+        print(f"KeyError: {e}. The columns {missing_columns} are not present in the DataFrame.")
+        return file  # Returns the original DataFrame in case of an error
 
 def cleaning_by_term(file: pd.DataFrame, column: str, term: any) -> pd.DataFrame:
     """
-    Remove linhas de um DataFrame onde uma coluna específica contém um valor específico, alterando o DataFrame original.
+    Removes rows from a DataFrame where a specific column contains a specific value, modifying the original DataFrame.
 
     Parameters
     ----------
     file : pandas.DataFrame
-        DataFrame a ser limpo.
+        DataFrame to be cleaned.
     
     column : str
-        Coluna na qual a limpeza será aplicada.
+        Column on which the cleaning will be applied.
     
     term : any
-        Termo que será removido da coluna.
+        Term that will be removed from the column.
 
     Returns
     -------
     pandas.DataFrame
-        O DataFrame original com as linhas removidas onde o termo estava presente na coluna.
+        The original DataFrame with rows removed where the term was present in the column.
     """
     try:
-        # Verifica se a coluna existe no DataFrame
+        # Check if the column exists in the DataFrame
         if column not in file.columns:
-            raise ValueError(f"A coluna '{column}' não existe no DataFrame.")
+            raise ValueError(f"The column '{column}' does not exist in the DataFrame.")
         
-        # Remove as linhas onde o valor da coluna é igual ao termo
+        # Remove the rows where the column value is equal to the term
         file.drop(file[file[column] == term].index, inplace=True)
         
     except Exception as e:
-        print(f"Ocorreu um erro durante a limpeza do DataFrame: {e}")
+        print(f"An error occurred during DataFrame cleaning: {e}")
     
     return file
 
 def clean_DataFrame(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Limpa as linhas do DataFrame que possuem ao menos um valor faltando em uma de suas linhas.
+    Cleans the rows of the DataFrame that have at least one missing value in any of their rows.
 
     Parameters
     ----------
     df : pd.DataFrame
-        DataFrame que contém as colunas a serem limpas.
+        DataFrame containing the columns to be cleaned.
     
     Returns
     -------
     pandas.DataFrame
-        DataFrame com as colunas/linhas limpas.
+        DataFrame with the columns/rows cleaned.
     """
     if not isinstance(df, pd.DataFrame):
-        raise ValueError("O argumento fornecido não é um pd.DataFrame.")  # Verifica se o df é um DataFrame e não uma Series
+        raise ValueError("The provided argument is not a pd.DataFrame.")  # Checks if df is a DataFrame and not a Series
     
     try:
         df_clean = df.dropna()
     except Exception as e:
-        raise ValueError(f"Não foi possível limpar as linhas: {e}")  # Inclui detalhes do erro na mensagem de exceção
+        raise ValueError(f"Could not clean the rows: {e}")  # Includes error details in the exception message
         
     return df_clean
