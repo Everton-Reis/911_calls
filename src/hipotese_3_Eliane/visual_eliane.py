@@ -77,7 +77,7 @@ def map_generator(filepath3):
     df = pd.read_csv(filepath3)
 
     # Load the map data (Baltimore police districts shapefile)
-    map_data = gpd.read_file('data/Police_Districts_2023.zip')
+    map_data = gpd.read_file('../../data/Police_Districts_2023.zip')
 
     # Sum call counts by district and sort the map data 
     call_sums = df.groupby('district')['call_count'].sum()
